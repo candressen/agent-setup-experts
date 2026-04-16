@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import ContactForm from '@/components/ContactForm'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -71,6 +72,13 @@ export default function ContactPage() {
               {SITE.calendlyUrl}
             </a>
           </p>
+        </div>
+      </section>
+
+      <section className="border-y border-white/8 bg-white/[0.02] px-6 py-16">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="mb-8 text-3xl font-bold text-white">Send Us a Message</h2>
+          <ContactForm />
         </div>
       </section>
 

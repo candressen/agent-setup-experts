@@ -24,13 +24,13 @@ export default function Nav() {
         </Link>
 
         <div className='hidden items-center gap-3 md:flex'>
-          {NAV_LINKS.filter((l) => l.label !== 'Services').map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
-              href={link.label === 'How It Works' ? '/#who-its-for' : link.href}
+              href={link.href}
               className='whitespace-nowrap text-sm text-white/70 transition hover:text-white'
             >
-              {link.label === 'How It Works' ? 'How It Works for My Business' : link.label}
+              {link.label}
             </Link>
           ))}
 
