@@ -53,11 +53,12 @@ export default function ContactPage() {
             working AI setup.
           </p>
 
-          <div className="mt-8 rounded-2xl border border-white/8 bg-white/[0.04] p-8">
-            <p className="py-8 text-center text-white/40">
-              [Calendly embed — replace this placeholder with your Calendly embed code]
-            </p>
-          </div>
+          <div
+            className="calendly-inline-widget mt-8 rounded-2xl overflow-hidden"
+            data-url="https://calendly.com/agentsetupexperts/30min?hide_gdpr_banner=1&background_color=111111&text_color=ffffff&primary_color=2563eb"
+            style={{minWidth: '320px', height: '700px'}}
+          />
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async />
 
           <p className="mt-6 text-white/60">
             Or book directly at{' '}
