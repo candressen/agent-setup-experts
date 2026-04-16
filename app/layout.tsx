@@ -40,8 +40,9 @@ export default function RootLayout({
         <Nav />
         <main className="pt-20">{children}</main>
         <Footer />
-        <Script id="ga4-placeholder" strategy="afterInteractive">
-          {"/* Replace with real GA4 ID */"}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-0CY2T8BBVJ" strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">
+          {"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0CY2T8BBVJ');"}
         </Script>
       </body>
     </html>
