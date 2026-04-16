@@ -5,7 +5,7 @@ export const SITE = {
   email: 'hello@agentsetupexperts.com',
   phone: '',
   location: 'Miami, Florida',
-  calendlyUrl: 'https://calendly.com/agentsetupexperts',
+  calendlyUrl: 'https://calendly.com/agentsetupexperts/30min',
 }
 
 export const COLORS = {
