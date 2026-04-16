@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   description:
     'We install and configure AI agents for your business in 48 hours. Done-for-you setup, workflow automation, and training. Book a free call.',
   metadataBase: new URL('https://agentsetupexperts.com'),
+  verification: { google: 'vzC--c4qZJ_N4SVotGBT98t2OrpHiMAK3zZ1LRlu7uI' },
   openGraph: {
     type: 'website',
     siteName: 'Agent Setup Experts',
