@@ -74,10 +74,10 @@ export default function HeroSection() {
             Book Your Free Strategy Call
           </a>
           <a
-            href='#how-it-works'
+            href='/#who-its-for'
             className='text-sm text-white/60 transition hover:text-white'
           >
-            See how it works ↓
+            See how it works for me
           </a>
         </motion.div>
       </motion.div>
