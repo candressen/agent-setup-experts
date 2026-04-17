@@ -6,6 +6,7 @@ export interface BlogPost {
   title: string
   date: string
   description: string
+  image: string
   content: string
 }
 
@@ -19,10 +20,12 @@ function readPost(filename: string): BlogPost {
   const date = lines.find((line) => line.startsWith('date: '))?.replace('date: ', '') ?? ''
   const description =
     lines.find((line) => line.startsWith('description: '))?.replace('description: ', '') ?? ''
+  const image =
+    lines.find((line) => line.startsWith('image: '))?.replace('image: ', '') ?? ''
   const contentStart = lines.findIndex((line) => line.startsWith('---end-meta---'))
   const content = contentStart > -1 ? lines.slice(contentStart + 1).join('\n') : raw
 
-  return { slug, title, date, description, content }
+  return { slug, title, date, description, image, content }
 }
 
 export function getAllPosts(): BlogPost[] {
