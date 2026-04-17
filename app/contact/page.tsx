@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import ContactForm from '@/components/ContactForm'
-import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Book a Free Strategy Call | Contact Agent Setup Experts',
@@ -64,12 +63,12 @@ export default function ContactPage() {
           <p className="mt-6 text-white/60">
             Or book directly at{' '}
             <a
-              href={SITE.calendlyUrl}
+              href="https://calendly.com/agentsetupexperts/30min?hide_gdpr_banner=1&background_color=111111&text_color=ffffff&primary_color=2563eb"
               target="_blank"
               rel="noreferrer"
               className="text-[#2563EB] transition hover:text-[#1d4ed8]"
             >
-              {SITE.calendlyUrl}
+              https://calendly.com/agentsetupexperts/30min?hide_gdpr_banner=1&background_color=111111&text_color=ffffff&primary_color=2563eb
             </a>
           </p>
         </div>
@@ -89,11 +88,15 @@ export default function ContactPage() {
           <div className="space-y-4">
             <div className="flex items-center gap-3 text-white/60">
               <span className="text-[#2563EB]">•</span>
-              <span>Email: {SITE.email}</span>
+              <span>Phone: 704-490-9493</span>
             </div>
             <div className="flex items-center gap-3 text-white/60">
               <span className="text-[#2563EB]">•</span>
-              <span>Location: {SITE.location}</span>
+              <span>Email: agentsetupexperts@gmail.com</span>
+            </div>
+            <div className="flex items-center gap-3 text-white/60">
+              <span className="text-[#2563EB]">•</span>
+              <span>Location: Miami, Florida</span>
             </div>
             <div className="flex items-center gap-3 text-white/60">
               <span className="text-[#2563EB]">•</span>

@@ -1,16 +1,22 @@
 'use client'
 
+import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
-  const [form, setForm] = useState({ name: '', email: '', business: '', message: '' })
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    company: '',
+    message: '',
+  })
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setStatus('sending')
     try {
@@ -39,37 +45,36 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className='space-y-4'>
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
         <div>
-          <label className='mb-1.5 block text-sm text-white/50'>Your name</label>
+          <label className='mb-1.5 block text-sm text-white/50'>First Name</label>
           <input
-            name='name'
+            name='firstName'
             required
-            value={form.name}
+            value={form.firstName}
             onChange={handleChange}
             className='w-full rounded-xl border border-white/10 bg-[#111] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#2563EB]/50 focus:ring-1 focus:ring-[#2563EB]/30'
-            placeholder='Christian Andressen'
+            placeholder='Christian'
           />
         </div>
         <div>
-          <label className='mb-1.5 block text-sm text-white/50'>Email address</label>
+          <label className='mb-1.5 block text-sm text-white/50'>Last Name</label>
           <input
-            name='email'
-            type='email'
+            name='lastName'
             required
-            value={form.email}
+            value={form.lastName}
             onChange={handleChange}
             className='w-full rounded-xl border border-white/10 bg-[#111] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#2563EB]/50 focus:ring-1 focus:ring-[#2563EB]/30'
-            placeholder='you@company.com'
+            placeholder='Andressen'
           />
         </div>
       </div>
       <div>
-        <label className='mb-1.5 block text-sm text-white/50'>Business type</label>
+        <label className='mb-1.5 block text-sm text-white/50'>Company</label>
         <input
-          name='business'
-          value={form.business}
+          name='company'
+          value={form.company}
           onChange={handleChange}
           className='w-full rounded-xl border border-white/10 bg-[#111] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#2563EB]/50 focus:ring-1 focus:ring-[#2563EB]/30'
-          placeholder='Marketing agency, law firm, real estate...'
+          placeholder='Your company name'
         />
       </div>
       <div>
@@ -89,7 +94,7 @@ export default function ContactForm() {
         disabled={status === 'sending'}
         className='w-full rounded-xl bg-[#2563EB] px-8 py-4 text-base font-semibold text-white transition hover:bg-[#1d4ed8] disabled:opacity-60'
       >
-        {status === 'sending' ? 'Sending...' : 'Send Message'}
+        Send Message
       </button>
       {status === 'error' && (
         <p className='text-center text-sm text-red-400'>

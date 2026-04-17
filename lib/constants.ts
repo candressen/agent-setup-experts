@@ -2,8 +2,8 @@ export const SITE = {
   name: 'Agent Setup Experts',
   tagline: 'Your Business. Running on AI. In 48 Hours.',
   url: 'https://agentsetupexperts.com',
-  email: 'hello@agentsetupexperts.com',
-  phone: '',
+  email: 'agentsetupexperts@gmail.com',
+  phone: '704-490-9493',
   location: 'Miami, Florida',
   calendlyUrl: 'https://calendly.com/agentsetupexperts/30min',
 }
