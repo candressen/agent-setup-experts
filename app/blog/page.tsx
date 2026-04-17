@@ -13,7 +13,8 @@ export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
-    <main className='mx-auto max-w-[1200px] px-6 py-32'>
+    <main className='min-h-screen bg-[#0a0a0a] px-6 py-32'>
+      <div className='mx-auto max-w-[1200px]'>
       <div className='mb-16'>
         <div className='mb-4 text-xs uppercase tracking-[0.2em] text-white/40'>BLOG</div>
         <h1 className='text-4xl font-bold text-white md:text-5xl'>AI Automation Insights</h1>
@@ -42,6 +43,7 @@ export default function BlogPage() {
           ))}
         </div>
       )}
+      </div>
     </main>
   )
 }

@@ -36,7 +36,8 @@ export default async function BlogPostPage({
   if (!post) notFound()
 
   return (
-    <main className='mx-auto max-w-[800px] px-6 py-32'>
+    <main className='min-h-screen bg-[#0a0a0a] px-6 py-32'>
+      <div className='mx-auto max-w-[800px]'>
       <Link href='/blog' className='mb-12 block text-sm text-white/40 transition hover:text-white'>
         ← Back to Blog
       </Link>
@@ -63,6 +64,7 @@ export default async function BlogPostPage({
         >
           Book Your Free Strategy Call
         </a>
+      </div>
       </div>
     </main>
   )
