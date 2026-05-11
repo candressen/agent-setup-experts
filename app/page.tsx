@@ -8,12 +8,14 @@ import ProblemSection from '@/components/ProblemSection'
 import SocialProofBar from '@/components/SocialProofBar'
 import SolutionSection from '@/components/SolutionSection'
 import WhoItsForSection from '@/components/WhoItsForSection'
+import MiamiIndustriesStrip from '@/components/MiamiIndustriesStrip'
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <SocialProofBar />
+      <MiamiIndustriesStrip />
       <ProblemSection />
       <SolutionSection />
       <HowItWorksSection />

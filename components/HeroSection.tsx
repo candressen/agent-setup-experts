@@ -38,7 +38,7 @@ export default function HeroSection() {
         >
           <span className='h-1.5 w-1.5 rounded-full bg-[#60a5fa]' />
           <span className='text-xs font-medium uppercase tracking-[0.22em] text-white/70'>
-            Done-For-You AI Automation
+            Miami AI Setup — Done For You in 48 Hours
           </span>
         </motion.div>
 
@@ -47,9 +47,9 @@ export default function HeroSection() {
           transition={{ duration: 0.55, ease: 'easeOut' }}
           className='mb-6 mx-auto max-w-[780px] tracking-tight text-white'
         >
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Stop Wasting Time</span>
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>On Work</span>
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>AI Should Be Doing.</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Done-For-You AI Agents</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>for Miami Small</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Businesses.</span>
         </motion.h1>
 
         <motion.p
@@ -57,8 +57,20 @@ export default function HeroSection() {
           transition={{ duration: 0.55, ease: 'easeOut' }}
           className='mx-auto mt-4 mb-6 max-w-md text-base leading-[1.6] text-white/60 md:text-lg'
         >
-          Save hours every week and reduce operational costs with AI systems deployed in 48 hours.
+          We build, launch, and deploy your AI agent in 48 hours. No DIY tools. No tech stress. We handle everything — strategy, setup, and deployment.
         </motion.p>
+
+        <motion.div
+          variants={fadeInUp}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          className='flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8'
+        >
+          {['Live in 48 hours', 'Done for you', 'No tech needed', 'Built for small business'].map(b => (
+            <span key={b} className='flex items-center gap-1.5 text-sm text-white/60'>
+              <span className='text-[#60a5fa]'>✓</span> {b}
+            </span>
+          ))}
+        </motion.div>
 
         <motion.div
           variants={fadeInUp}
