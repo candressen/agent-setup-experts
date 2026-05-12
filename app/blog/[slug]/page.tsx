@@ -56,7 +56,7 @@ export default async function BlogPostPage({
           Book a free 30-minute strategy call and get a working AI system in 48 hours.
         </p>
         <a
-          href='https://calendly.com/agentsetupexperts/30min'
+          href='https://calendly.com/agentsetupexperts/30min?redirect_url=https://agentsetupexperts.com/thank-you'
           target='_blank'
           rel='noreferrer'
           className='inline-flex rounded-xl bg-[#2563EB] px-8 py-4 text-base font-semibold text-white transition hover:bg-[#1d4ed8]'

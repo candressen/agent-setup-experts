@@ -56,7 +56,7 @@ export default function ContactPage() {
 
           <div
             className="calendly-inline-widget mt-8 rounded-2xl overflow-hidden"
-            data-url="https://calendly.com/agentsetupexperts/30min?hide_gdpr_banner=1&background_color=111111&text_color=ffffff&primary_color=2563eb"
+            data-url="https://calendly.com/agentsetupexperts/30min?hide_gdpr_banner=1&background_color=111111&text_color=ffffff&primary_color=2563eb&redirect_url=https://agentsetupexperts.com/thank-you"
             style={{minWidth: '320px', height: '700px'}}
           />
           <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
