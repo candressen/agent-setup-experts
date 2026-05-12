@@ -5,9 +5,9 @@ import PricingPreviewSection from '@/components/PricingPreviewSection'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'OpenClaw Setup Service | Business AI Agent Configuration',
+  title: 'OpenClaw AI Agent Setup Service | Miami | Agent Setup Experts',
   description:
-    'Professional OpenClaw installation and configuration for businesses. API integrations, custom agents, workflow automation. Book a free setup call.',
+    'Professional OpenClaw AI agent setup for businesses in Miami. Installation, API integrations, custom agents, and workflow automation in 48 hours.',
 }
 
 const serviceCards = [

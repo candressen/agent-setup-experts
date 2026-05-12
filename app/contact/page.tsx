@@ -4,9 +4,9 @@ import Script from 'next/script'
 import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Book a Free Strategy Call | Contact Agent Setup Experts',
+  title: 'Book a Free AI Strategy Call | Agent Setup Experts',
   description:
-    'Book a free 30-minute strategy call. We will map out exactly what AI can do for your business. No pressure, no obligation.',
+    'Book a free 30-minute AI strategy call. We map out exactly what AI agents can do for your Miami business. No pressure, no obligation.',
 }
 
 export default function ContactPage() {

@@ -4,9 +4,9 @@ import { SITE, PRICING_TIERS } from '@/lib/constants'
 import ClosingCTASection from '@/components/ClosingCTASection'
 
 export const metadata: Metadata = {
-  title: 'Pricing | Agent Setup Experts',
+  title: 'AI Agent Pricing for Small Business | Agent Setup Experts',
   description:
-    'Simple, transparent AI agent setup pricing. From a standalone autonomous agent at $1,000 to full custom setup and year-long support at $10,000.',
+    'Simple, transparent AI agent pricing for small businesses. From starter setup to full done-for-you AI agent installation. See all plans.',
 }
 
 export default function PricingPage() {

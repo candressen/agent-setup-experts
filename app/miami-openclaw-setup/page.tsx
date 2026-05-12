@@ -5,9 +5,9 @@ import PricingPreviewSection from '@/components/PricingPreviewSection'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Miami OpenClaw Setup | AI Agent Installation in Miami, FL',
+  title: 'AI Agent Setup in Miami | Done For You | Agent Setup Experts',
   description:
-    'Miami-based OpenClaw and AI agent setup service. We install and configure AI agents for your Miami business in 48 hours.',
+    'Done-for-you AI agent setup in Miami, FL. We install and configure OpenClaw and custom AI agents for Miami small businesses in 48 hours.',
 }
 
 const whoWeServe = [
