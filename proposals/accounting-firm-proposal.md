@@ -11,7 +11,13 @@ Agent Setup Experts helps accounting and tax firms deploy practical AI agents th
 
 This is not a replacement for your staff. It is an operational layer that supports your team during busy season and improves responsiveness year-round.
 
-### The Problem We Solve
+### Why This Is Different
+
+Platforms like Ramp and Mercury automate parts of bookkeeping for businesses. ASE focuses on the other side — the accounting firm itself. We automate how your firm manages clients, collects documents, and preps returns — workflows no fintech platform addresses.
+
+Your clients may already use tools like QuickBooks, Ramp, or Square. None of those help you, the CPA, work faster. That is the gap we fill.
+
+## The Problem We Solve
 For most tax and bookkeeping firms, the real bottleneck is not expertise. It is workflow friction.
 
 During tax season, teams lose hours every week to repeated follow-ups for missing W-2s, 1099s, receipts, signatures, and organizer forms. Clients call or email for status updates, interrupting billable work. New client onboarding often varies by staff member, creating inconsistency and missed information. On the bookkeeping side, manual entry and categorization are repetitive, time-consuming, and prone to avoidable errors.
