@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 import { SITE, PRICING_TIERS } from '@/lib/constants'
 import ClosingCTASection from '@/components/ClosingCTASection'
@@ -84,12 +85,12 @@ export default function PricingPage() {
             typically a few dollars to a few hundred dollars per month depending on how much your
             agent is used.
           </p>
-          <a
+          <Link
             href="/blog/understanding-ai-api-costs"
             className="text-sm text-[#2563EB] transition hover:text-[#1d4ed8]"
           >
             Learn how AI API pricing works
-          </a>
+          </Link>
         </div>
       </section>
 

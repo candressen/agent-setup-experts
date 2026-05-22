@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { SITE } from '@/lib/constants'
 
@@ -59,7 +60,7 @@ export default function SolutionSection() {
           </div>
           <p className='mt-4 text-xs text-white/30'>
             AI provider API fees (OpenAI, Claude) billed separately.{' '}
-            <a href='/blog/understanding-ai-api-costs' className='text-[#2563EB]/60 hover:text-[#2563EB] transition'>Learn more</a>
+            <Link href='/blog/understanding-ai-api-costs' className='text-[#2563EB]/60 transition hover:text-[#2563EB]'>Learn more</Link>
           </p>
         </motion.div>
       </div>

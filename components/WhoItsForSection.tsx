@@ -3,7 +3,6 @@
 import { useState, type ChangeEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const fadeInUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }
 
 const INDUSTRY_MAP: Record<string, { label: string; useCases: { title: string; description: string }[] }> = {
   agency: {

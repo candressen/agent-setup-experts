@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { SITE } from '@/lib/constants'
 
@@ -85,12 +86,9 @@ export default function HeroSection() {
           >
             Book Your Free Strategy Call
           </a>
-          <a
-            href='/#who-its-for'
-            className='text-sm text-white/60 transition hover:text-white'
-          >
+          <Link href='/#who-its-for' className='text-sm text-white/60 transition hover:text-white'>
             See how it works for me
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
     </section>

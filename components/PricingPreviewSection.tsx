@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { SITE, PRICING_TIERS } from '@/lib/constants'
 
@@ -94,20 +95,20 @@ export default function PricingPreviewSection() {
 
       <div className="mt-10 text-center text-xs text-white/30">
         AI provider API fees (OpenAI, Claude) are billed separately based on usage.
-        <a
+        <Link
           href="/blog/understanding-ai-api-costs"
           className="ml-1 text-[#2563EB]/60 transition hover:text-[#2563EB]"
         >
           Learn more
-        </a>
+        </Link>
       </div>
 
-      <a
+      <Link
         href="/pricing"
         className="mt-4 block text-center text-sm text-white/40 transition hover:text-white"
       >
         See full pricing
-      </a>
+      </Link>
     </motion.section>
   )
 }
