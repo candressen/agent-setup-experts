@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import { cookies } from "next/headers";
+import CookieConsent from "@/components/CookieConsent";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
-import { SITE } from "@/lib/constants";
+import { COOKIE_CONSENT_KEY, type CookieConsentValue } from "@/lib/cookie-consent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,16 +31,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const consentCookie = cookieStore.get(COOKIE_CONSENT_KEY)?.value;
+  const initialConsent: CookieConsentValue | null =
+    consentCookie === 'accepted' || consentCookie === 'declined' ? consentCookie : null;
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Google Tag Manager */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KPHGBV8D');` }} />
         {/* LocalBusiness Structured Data */}
         <script
           type="application/ld+json"
@@ -80,15 +84,10 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[#0a0a0a] text-white antialiased">
-        {/* Google Tag Manager (noscript) */}
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KPHGBV8D" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
         <Nav />
         <main className="pt-20">{children}</main>
         <Footer />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-0CY2T8BBVJ" strategy="afterInteractive" />
-        <Script id="ga4" strategy="afterInteractive">
-          {"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0CY2T8BBVJ');"}
-        </Script>
+        <CookieConsent initialConsent={initialConsent} />
       </body>
     </html>
   );
