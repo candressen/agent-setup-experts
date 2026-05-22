@@ -2,6 +2,8 @@ import Link from 'next/link'
 
 import { NAV_LINKS, SITE } from '@/lib/constants'
 
+const FOOTER_LINKS = [...NAV_LINKS, { label: 'Privacy Policy', href: '/privacy-policy' }]
+
 export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] border-t border-white/8">
@@ -10,7 +12,7 @@ export default function Footer() {
           <div className="text-lg font-semibold text-white">{SITE.name}</div>
 
           <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3">
-            {NAV_LINKS.map((link) => (
+            {FOOTER_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -24,8 +26,14 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/8 pt-6 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <div>© 2026 Agent Setup Experts. All rights reserved.</div>
-          <div>
-            {SITE.location} · {SITE.email}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>
+              {SITE.location} · {SITE.email}
+            </span>
+            <span className="hidden text-white/15 sm:inline">|</span>
+            <Link href="/privacy-policy" className="text-white/40 transition hover:text-white/70">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </div>
