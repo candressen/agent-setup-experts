@@ -1,0 +1,103 @@
+{
+  "batch": "day-1-batch-1",
+  "style": "original helper-companion mascots with collectible-creature energy for dark-mode SaaS cards",
+  "render": "polished 3D clay-render look with soft premium shapes, centered portrait framing, dark navy rounded-square tile, cyan-violet rim light",
+  "constraints": [
+    "business-friendly",
+    "no text or badges",
+    "clean silhouette at small sizes",
+    "not derivative of existing franchises"
+  ],
+  "icons": [
+    {
+      "slug": "email-organizer",
+      "mascot": "owl",
+      "prop": "email envelopes and tidy trays",
+      "file": "/agent-library-icons/email-organizer.png"
+    },
+    {
+      "slug": "meeting-notes-agent",
+      "mascot": "fox",
+      "prop": "notebook and pen",
+      "file": "/agent-library-icons/meeting-notes-agent.png"
+    },
+    {
+      "slug": "inbox-triage-assistant",
+      "mascot": "raccoon",
+      "prop": "priority inbox cards",
+      "file": "/agent-library-icons/inbox-triage-assistant.png"
+    },
+    {
+      "slug": "lead-follow-up-agent",
+      "mascot": "otter",
+      "prop": "follow-up chat bubble",
+      "file": "/agent-library-icons/lead-follow-up-agent.png"
+    },
+    {
+      "slug": "crm-update-agent",
+      "mascot": "beaver",
+      "prop": "CRM contact cards",
+      "file": "/agent-library-icons/crm-update-agent.png"
+    },
+    {
+      "slug": "appointment-reminder-agent",
+      "mascot": "rabbit",
+      "prop": "calendar and reminder bell",
+      "file": "/agent-library-icons/appointment-reminder-agent.png"
+    },
+    {
+      "slug": "review-request-agent",
+      "mascot": "corgi",
+      "prop": "five-star review badge",
+      "file": "/agent-library-icons/review-request-agent.png"
+    },
+    {
+      "slug": "proposal-drafting-agent",
+      "mascot": "turtle",
+      "prop": "proposal document and pen",
+      "file": "/agent-library-icons/proposal-drafting-agent.png"
+    },
+    {
+      "slug": "call-summary-agent",
+      "mascot": "robin",
+      "prop": "phone and summary note card",
+      "file": "/agent-library-icons/call-summary-agent.png"
+    },
+    {
+      "slug": "sales-pipeline-agent",
+      "mascot": "lynx",
+      "prop": "three-node sales pipeline",
+      "file": "/agent-library-icons/sales-pipeline-agent.png"
+    },
+    {
+      "slug": "missed-call-text-back-agent",
+      "mascot": "hedgehog",
+      "prop": "phone with text reply bubble",
+      "file": "/agent-library-icons/missed-call-text-back-agent.png"
+    },
+    {
+      "slug": "faq-support-agent",
+      "mascot": "penguin",
+      "prop": "info bubble",
+      "file": "/agent-library-icons/faq-support-agent.png"
+    },
+    {
+      "slug": "estimate-follow-up-agent",
+      "mascot": "squirrel",
+      "prop": "estimate clipboard",
+      "file": "/agent-library-icons/estimate-follow-up-agent.png"
+    },
+    {
+      "slug": "document-chaser-agent",
+      "mascot": "badger",
+      "prop": "client folder and document",
+      "file": "/agent-library-icons/document-chaser-agent.png"
+    },
+    {
+      "slug": "billing-reminder-agent",
+      "mascot": "deer",
+      "prop": "invoice and reminder bell",
+      "file": "/agent-library-icons/billing-reminder-agent.png"
+    }
+  ]
+}
