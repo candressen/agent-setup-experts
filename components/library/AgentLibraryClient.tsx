@@ -6,9 +6,12 @@ import { useMemo, useState } from 'react'
 
 import {
   AGENT_INDUSTRY_FILTERS,
+  AGENT_INDUSTRY_OPTIONS,
   AGENT_LIBRARY,
   AGENT_ROLE_FILTERS,
+  AGENT_ROLE_OPTIONS,
   type AgentIndustry,
+  type AgentLibraryItem,
   type AgentRole,
 } from '@/lib/agent-library'
 import { SITE } from '@/lib/constants'
@@ -26,6 +29,7 @@ function FilterChip({
     <button
       type='button'
       onClick={onClick}
+      aria-pressed={active}
       className={`rounded-full border px-4 py-2 text-sm transition ${
         active
           ? 'border-[#2563EB]/60 bg-[#2563EB]/15 text-white'
@@ -37,10 +41,47 @@ function FilterChip({
   )
 }
 
+function AgentCard({ agent }: { agent: AgentLibraryItem }) {
+  return (
+    <article className='group rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition hover:border-white/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))]'>
+      <div className='mb-4 flex items-start gap-4'>
+        <div className='relative h-[72px] w-[72px] overflow-hidden rounded-2xl border border-white/10 bg-[#101010]'>
+          <Image src={agent.image} alt={`${agent.name} icon`} fill sizes='72px' className='object-cover' />
+        </div>
+
+        <div className='min-w-0 flex-1'>
+          <div className='mb-2 inline-flex rounded-full border border-[#2563EB]/25 bg-[#2563EB]/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[#93c5fd]'>
+            {agent.role}
+          </div>
+          <h3 className='text-xl font-semibold tracking-tight text-white'>{agent.name}</h3>
+        </div>
+      </div>
+
+      <p className='text-sm leading-6 text-white/65'>{agent.description}</p>
+
+      <div className='mt-5 flex flex-wrap gap-2'>
+        {agent.industries.map((item) => (
+          <span
+            key={`${agent.slug}-${item}`}
+            className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/55'
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </article>
+  )
+}
+
 export default function AgentLibraryClient() {
   const [role, setRole] = useState<'All' | AgentRole>('All')
   const [industry, setIndustry] = useState<'All' | AgentIndustry>('All')
   const [query, setQuery] = useState('')
+
+  const selectedRole = role === 'All' ? null : AGENT_ROLE_OPTIONS.find((item) => item.value === role)
+  const selectedIndustry =
+    industry === 'All' ? null : AGENT_INDUSTRY_OPTIONS.find((item) => item.value === industry)
+  const activeFilterCount = [role !== 'All', industry !== 'All', query.trim().length > 0].filter(Boolean).length
 
   const filteredAgents = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
@@ -79,12 +120,25 @@ export default function AgentLibraryClient() {
 
             <label className='block'>
               <span className='mb-2 block text-sm text-white/55'>Search agents</span>
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder='Search by name, role, or industry'
-                className='w-full min-w-0 rounded-xl border border-white/10 bg-[#0a0a0a] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#2563EB]/50 lg:min-w-[320px]'
-              />
+              <div className='relative'>
+                <svg
+                  aria-hidden='true'
+                  viewBox='0 0 20 20'
+                  className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth='1.8'
+                >
+                  <circle cx='9' cy='9' r='5.75' />
+                  <path d='m13.5 13.5 3 3' strokeLinecap='round' />
+                </svg>
+                <input
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder='Search by name, role, or industry'
+                  className='w-full min-w-0 rounded-xl border border-white/10 bg-[#0a0a0a] py-3 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#2563EB]/50 lg:min-w-[320px]'
+                />
+              </div>
             </label>
           </div>
 
@@ -102,6 +156,9 @@ export default function AgentLibraryClient() {
                   />
                 ))}
               </div>
+              <p className='mt-3 min-h-10 text-sm leading-6 text-white/45'>
+                {selectedRole?.description ?? 'Choose a role to narrow the library by the kind of work the agent handles.'}
+              </p>
             </div>
 
             <div>
@@ -121,14 +178,24 @@ export default function AgentLibraryClient() {
                   />
                 ))}
               </div>
+              <p className='mt-3 min-h-10 text-sm leading-6 text-white/45'>
+                {selectedIndustry?.description ?? 'Use an industry filter to see examples that line up with your business model.'}
+              </p>
             </div>
           </div>
 
           <div className='mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/8 pt-5 text-sm text-white/55'>
-            <p>
-              Showing <span className='text-white'>{filteredAgents.length}</span> of{' '}
-              <span className='text-white'>{AGENT_LIBRARY.length}</span> installable agents.
-            </p>
+            <div className='flex flex-wrap items-center gap-3'>
+              <p>
+                Showing <span className='text-white'>{filteredAgents.length}</span> of{' '}
+                <span className='text-white'>{AGENT_LIBRARY.length}</span> installable agents.
+              </p>
+              {activeFilterCount > 0 && (
+                <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/55'>
+                  {activeFilterCount} filter{activeFilterCount === 1 ? '' : 's'} active
+                </span>
+              )}
+            </div>
             {(role !== 'All' || industry !== 'All' || query.trim()) && (
               <button
                 type='button'
@@ -137,7 +204,7 @@ export default function AgentLibraryClient() {
                   setIndustry('All')
                   setQuery('')
                 }}
-                className='text-[#60a5fa] transition hover:text-white'
+                className='rounded-full border border-white/10 px-3 py-1.5 text-[#60a5fa] transition hover:border-white/20 hover:text-white'
               >
                 Clear filters
               </button>
@@ -150,42 +217,7 @@ export default function AgentLibraryClient() {
         <div className='mx-auto max-w-[1200px]'>
           <div className='grid gap-5 sm:grid-cols-2 xl:grid-cols-3'>
             {filteredAgents.map((agent) => (
-              <article
-                key={agent.slug}
-                className='group rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition hover:border-white/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))]'
-              >
-                <div className='mb-4 flex items-start gap-4'>
-                  <div className='relative h-[72px] w-[72px] overflow-hidden rounded-2xl border border-white/10 bg-[#101010]'>
-                    <Image
-                      src={agent.image}
-                      alt={`${agent.name} icon`}
-                      fill
-                      sizes='72px'
-                      className='object-cover'
-                    />
-                  </div>
-
-                  <div className='min-w-0 flex-1'>
-                    <div className='mb-2 inline-flex rounded-full border border-[#2563EB]/25 bg-[#2563EB]/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[#93c5fd]'>
-                      {agent.role}
-                    </div>
-                    <h3 className='text-xl font-semibold tracking-tight text-white'>{agent.name}</h3>
-                  </div>
-                </div>
-
-                <p className='text-sm leading-6 text-white/65'>{agent.description}</p>
-
-                <div className='mt-5 flex flex-wrap gap-2'>
-                  {agent.industries.map((item) => (
-                    <span
-                      key={`${agent.slug}-${item}`}
-                      className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/55'
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </article>
+              <AgentCard key={agent.slug} agent={agent} />
             ))}
           </div>
 
