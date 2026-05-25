@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
 
 import {
   AGENT_INDUSTRY_FILTERS,
@@ -82,10 +83,70 @@ function AgentCard({ agent }: { agent: AgentLibraryItem }) {
   )
 }
 
+function parseRoleParam(value: string | null): 'All' | AgentRole {
+  return value && AGENT_ROLE_FILTERS.includes(value as AgentRole) ? (value as AgentRole) : 'All'
+}
+
+function parseIndustryParam(value: string | null): 'All' | AgentIndustry {
+  return value && AGENT_INDUSTRY_FILTERS.includes(value as AgentIndustry)
+    ? (value as AgentIndustry)
+    : 'All'
+}
+
+function parseQueryParam(value: string | null) {
+  return value?.trim() ?? ''
+}
+
 export default function AgentLibraryClient() {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
   const [role, setRole] = useState<'All' | AgentRole>('All')
   const [industry, setIndustry] = useState<'All' | AgentIndustry>('All')
   const [query, setQuery] = useState('')
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    setRole(parseRoleParam(searchParams.get('role')))
+    setIndustry(parseIndustryParam(searchParams.get('industry')))
+    setQuery(parseQueryParam(searchParams.get('q')))
+  }, [searchParams])
+
+  useEffect(() => {
+    const nextParams = new URLSearchParams()
+
+    if (role !== 'All') {
+      nextParams.set('role', role)
+    }
+
+    if (industry !== 'All') {
+      nextParams.set('industry', industry)
+    }
+
+    const normalizedQuery = query.trim()
+    if (normalizedQuery) {
+      nextParams.set('q', normalizedQuery)
+    }
+
+    const nextQueryString = nextParams.toString()
+    const currentQueryString = searchParams.toString()
+
+    if (nextQueryString === currentQueryString) {
+      return
+    }
+
+    router.replace(nextQueryString ? `${pathname}?${nextQueryString}` : pathname, { scroll: false })
+  }, [industry, pathname, query, role, router, searchParams])
+
+  useEffect(() => {
+    if (!copied) {
+      return
+    }
+
+    const timeout = window.setTimeout(() => setCopied(false), 1800)
+    return () => window.clearTimeout(timeout)
+  }, [copied])
 
   const selectedRole = role === 'All' ? null : AGENT_ROLE_OPTIONS.find((item) => item.value === role)
   const selectedIndustry =
@@ -108,6 +169,15 @@ export default function AgentLibraryClient() {
       return matchesRole && matchesIndustry && matchesQuery
     })
   }, [industry, query, role])
+
+  const handleCopyFilteredLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      setCopied(true)
+    } catch {
+      setCopied(false)
+    }
+  }
 
   return (
     <>
@@ -208,17 +278,26 @@ export default function AgentLibraryClient() {
               )}
             </div>
             {(role !== 'All' || industry !== 'All' || query.trim()) && (
-              <button
-                type='button'
-                onClick={() => {
-                  setRole('All')
-                  setIndustry('All')
-                  setQuery('')
-                }}
-                className='rounded-full border border-white/10 px-3 py-1.5 text-[#60a5fa] transition hover:border-white/20 hover:text-white'
-              >
-                Clear filters
-              </button>
+              <div className='flex flex-wrap items-center gap-2'>
+                <button
+                  type='button'
+                  onClick={handleCopyFilteredLink}
+                  className='rounded-full border border-white/10 px-3 py-1.5 text-white/60 transition hover:border-white/20 hover:text-white'
+                >
+                  {copied ? 'Link copied' : 'Copy filtered link'}
+                </button>
+                <button
+                  type='button'
+                  onClick={() => {
+                    setRole('All')
+                    setIndustry('All')
+                    setQuery('')
+                  }}
+                  className='rounded-full border border-white/10 px-3 py-1.5 text-[#60a5fa] transition hover:border-white/20 hover:text-white'
+                >
+                  Clear filters
+                </button>
+              </div>
             )}
           </div>
         </div>
