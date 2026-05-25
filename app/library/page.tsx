@@ -1,12 +1,28 @@
 import type { Metadata } from 'next'
 
 import AgentLibraryClient from '@/components/library/AgentLibraryClient'
-import { AGENT_LIBRARY } from '@/lib/agent-library'
+import { AGENT_LIBRARY, AGENT_LIBRARY_PAGE_COPY } from '@/lib/agent-library'
 
 export const metadata: Metadata = {
   title: 'AI Agent Library for Small Business | Agent Setup Experts',
   description:
     'Browse practical AI agents Agent Setup Experts can install for small businesses, including sales, operations, support, finance, recruiting, and executive workflows.',
+  alternates: {
+    canonical: '/library',
+  },
+  openGraph: {
+    title: 'AI Agent Library for Small Business | Agent Setup Experts',
+    description:
+      'Browse practical AI agents Agent Setup Experts can install for small businesses, including sales, operations, support, finance, recruiting, and executive workflows.',
+    url: 'https://agentsetupexperts.com/library',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Agent Library for Small Business | Agent Setup Experts',
+    description:
+      'Browse practical AI agents Agent Setup Experts can install for small businesses, including sales, operations, support, finance, recruiting, and executive workflows.',
+  },
 }
 
 export default function LibraryPage() {
@@ -22,21 +38,20 @@ export default function LibraryPage() {
             <div className='mb-4 inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.04] px-4 py-1.5'>
               <span className='h-1.5 w-1.5 rounded-full bg-[#60a5fa]' />
               <span className='text-xs font-medium uppercase tracking-[0.22em] text-white/70'>
-                ASE agent library
+                {AGENT_LIBRARY_PAGE_COPY.eyebrow}
               </span>
             </div>
 
             <h1 className='max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight text-white md:text-7xl'>
-              A practical catalog of AI agents we can set up for your business.
+              {AGENT_LIBRARY_PAGE_COPY.heading}
             </h1>
             <p className='mt-6 max-w-3xl text-lg leading-8 text-white/60 md:text-xl'>
-              Browse installable workflows for sales, operations, support, finance, recruiting, and
-              owner reporting. These are real setup patterns, not vague demos.
+              {AGENT_LIBRARY_PAGE_COPY.subheading}
             </p>
 
             <div className='mt-8 flex flex-wrap gap-3'>
               {[
-                `${AGENT_LIBRARY.length}+ launch-ready agent setups`,
+                `${AGENT_LIBRARY.length} launch-ready agent setups`,
                 'Role and industry filters',
                 'Built to fit your actual tools and approvals',
               ].map((item) => (

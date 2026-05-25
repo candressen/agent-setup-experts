@@ -59,6 +59,15 @@ function AgentCard({ agent }: { agent: AgentLibraryItem }) {
 
       <p className='text-sm leading-6 text-white/65'>{agent.description}</p>
 
+      <div className='mt-4 flex flex-wrap gap-2 text-xs text-white/45'>
+        <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5'>
+          {agent.industries.length > 1 ? 'Multi-industry' : 'Single-industry'}
+        </span>
+        <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5'>
+          Install-ready workflow
+        </span>
+      </div>
+
       <div className='mt-5 flex flex-wrap gap-2'>
         {agent.industries.map((item) => (
           <span
@@ -133,6 +142,8 @@ export default function AgentLibraryClient() {
                   <path d='m13.5 13.5 3 3' strokeLinecap='round' />
                 </svg>
                 <input
+                  type='search'
+                  aria-label='Search agents'
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder='Search by name, role, or industry'
