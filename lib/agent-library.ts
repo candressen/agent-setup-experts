@@ -27,8 +27,12 @@ export type AgentLibraryItem = {
   slug: string
   name: string
   description: string
+  summary: string
   role: AgentRole
   industries: AgentIndustry[]
+  bestFor: string[]
+  delivers: string[]
+  connectsTo: string[]
   iconSlug: string
   visualId: string
   image: string
@@ -123,21 +127,31 @@ export const AGENT_INDUSTRY_FILTERS: AgentIndustry[] = AGENT_INDUSTRY_OPTIONS.ma
 
 export const AGENT_LIBRARY_PAGE_COPY = {
   eyebrow: 'ASE agent library',
-  heading: 'Practical AI agents for small business workflows',
+  heading: 'ASE library agents built for real business workflows',
   subheading:
-    'A launch-ready catalog of installable agent setups for sales, operations, support, finance, recruiting, and owner visibility.',
+    'Browse the install-ready agent catalog, choose the workflows you want first, and let ASE deploy them around your tools, approvals, and team.',
 } as const
 
 const createAgent = ({
   slug,
   iconSlug,
   ...agent
-}: Omit<AgentLibraryItem, 'image' | 'visualId' | 'iconSlug'> & { iconSlug?: string }): AgentLibraryItem => {
+}: Omit<AgentLibraryItem, 'image' | 'visualId' | 'iconSlug' | 'summary' | 'bestFor' | 'delivers' | 'connectsTo'> & {
+  iconSlug?: string
+  summary?: string
+  bestFor?: string[]
+  delivers?: string[]
+  connectsTo?: string[]
+}): AgentLibraryItem => {
   const resolvedIconSlug = iconSlug ?? slug
 
   return {
     ...agent,
     slug,
+    summary: agent.summary ?? agent.description,
+    bestFor: agent.bestFor ?? agent.industries,
+    delivers: agent.delivers ?? ['Configured workflow', 'ASE setup', 'Team-ready handoff'],
+    connectsTo: agent.connectsTo ?? ['Email', 'Calendar', 'Forms'],
     iconSlug: resolvedIconSlug,
     visualId: `icon-${resolvedIconSlug}`,
     image: `/agent-library-icons/${resolvedIconSlug}.png`,
@@ -145,6 +159,115 @@ const createAgent = ({
 }
 
 export const AGENT_LIBRARY: AgentLibraryItem[] = [
+
+  createAgent({
+    slug: 'google-ads-manager-agent',
+    name: 'Google Ads Manager Agent',
+    description: 'Monitors campaign performance, flags spend issues, and prepares optimization actions for Google Ads accounts.',
+    summary: 'Keeps Google Ads reporting, checks, and optimization tasks moving on a steady rhythm.',
+    role: 'Marketing',
+    industries: ['General', 'Consulting', 'Home Services'],
+    iconSlug: 'weekly-kpi-brief-agent',
+    bestFor: ['Lead-gen campaigns', 'Agency reporting', 'Owner visibility'],
+    delivers: ['Performance summaries', 'Budget alerts', 'Optimization task lists'],
+    connectsTo: ['Google Ads', 'GA4', 'Sheets'],
+  }),
+  createAgent({
+    slug: 'facebook-ads-manager-agent',
+    name: 'Facebook Ads Manager Agent',
+    description: 'Tracks Meta campaign performance, surfaces creative and funnel issues, and organizes next-step recommendations.',
+    summary: 'Turns noisy Meta ads data into practical updates your team can act on quickly.',
+    role: 'Marketing',
+    industries: ['General', 'Med Spa', 'Real Estate'],
+    iconSlug: 'social-caption-agent',
+    bestFor: ['Meta lead campaigns', 'Creative reporting', 'Fast-moving offers'],
+    delivers: ['Performance digests', 'Creative watchouts', 'Lead quality notes'],
+    connectsTo: ['Meta Ads', 'Lead forms', 'CRM'],
+  }),
+  createAgent({
+    slug: 'graphic-designer-agent',
+    name: 'Graphic Designer Agent',
+    description: 'Builds on-brand visual drafts and marketing asset requests so your team can move faster on promotions.',
+    summary: 'Supports repeatable creative production for offers, promos, and internal requests.',
+    role: 'Marketing',
+    industries: ['General', 'Restaurant', 'Med Spa'],
+    iconSlug: 'content-repurposing-agent',
+    bestFor: ['Promo graphics', 'Campaign support', 'Brand consistency'],
+    delivers: ['Creative briefs', 'Draft asset sets', 'Revision-ready handoff'],
+    connectsTo: ['Brand files', 'Drive', 'Design tools'],
+  }),
+  createAgent({
+    slug: 'video-creator-agent',
+    name: 'Video Creator Agent',
+    description: 'Turns offers, footage, and talking points into draft short-form video concepts, scripts, and production checklists.',
+    summary: 'Helps the team publish more video content without rebuilding the process every week.',
+    role: 'Marketing',
+    industries: ['General', 'Med Spa', 'Real Estate'],
+    iconSlug: 'social-caption-agent',
+    bestFor: ['Short-form content', 'Offer promos', 'Repurposed founder content'],
+    delivers: ['Video hooks', 'Script drafts', 'Shot lists'],
+    connectsTo: ['Drive', 'Content calendar', 'Editing tools'],
+  }),
+  createAgent({
+    slug: 'social-media-posting-agent',
+    name: 'Social Media Posting Agent',
+    description: 'Schedules approved posts, keeps the calendar organized, and maintains a steady publishing rhythm across channels.',
+    summary: 'Takes approved content from draft to scheduled post without manual shuffling.',
+    role: 'Marketing',
+    industries: ['General', 'Restaurant', 'Med Spa'],
+    iconSlug: 'social-caption-agent',
+    bestFor: ['Multi-channel posting', 'Content ops', 'Consistent publishing'],
+    delivers: ['Posting schedules', 'Channel checklists', 'Publishing confirmations'],
+    connectsTo: ['Instagram', 'Facebook', 'Scheduling tools'],
+  }),
+  createAgent({
+    slug: 'voice-calling-agent',
+    name: 'Voice Calling Agent',
+    description: 'Handles scripted outbound or inbound voice workflows like follow-up calls, reminders, and basic qualification.',
+    summary: 'Adds a voice layer for repetitive phone workflows while keeping escalation paths clear.',
+    role: 'Sales',
+    industries: ['Home Services', 'Law', 'General'],
+    iconSlug: 'missed-call-text-back-agent',
+    bestFor: ['Reminder calls', 'Lead qualification', 'Call overflow'],
+    delivers: ['Call outcomes', 'Disposition notes', 'Escalation handoff'],
+    connectsTo: ['Phone system', 'CRM', 'Calendar'],
+  }),
+  createAgent({
+    slug: 'customer-support-agent',
+    name: 'Customer Support Agent',
+    description: 'Handles routine customer questions, routes edge cases, and keeps service updates moving without burying the team.',
+    summary: 'Creates a dependable first line of customer support across common service channels.',
+    role: 'Support',
+    industries: ['General', 'Restaurant', 'Home Services'],
+    iconSlug: 'faq-support-agent',
+    bestFor: ['FAQ coverage', 'Status requests', 'Support triage'],
+    delivers: ['Resolved routine tickets', 'Escalation routing', 'Customer-ready replies'],
+    connectsTo: ['Shared inbox', 'Chat', 'Knowledge base'],
+  }),
+  createAgent({
+    slug: 'website-developer-agent',
+    name: 'Website Developer Agent',
+    description: 'Prepares page updates, content change requests, and structured implementation tasks for ongoing website work.',
+    summary: 'Keeps smaller website improvements organized so nothing stalls between idea and launch.',
+    role: 'Operations',
+    industries: ['General', 'Consulting', 'Real Estate'],
+    iconSlug: 'website-lead-capture-agent',
+    bestFor: ['Landing page updates', 'Site QA', 'Content implementation'],
+    delivers: ['Build-ready specs', 'Update queues', 'Launch checklists'],
+    connectsTo: ['CMS', 'Analytics', 'Forms'],
+  }),
+  createAgent({
+    slug: 'app-developer-agent',
+    name: 'App Developer Agent',
+    description: 'Organizes feature specs, QA feedback, and implementation tasks for internal tools or customer-facing app workflows.',
+    summary: 'Supports ongoing product execution with cleaner specs, faster handoff, and tighter delivery loops.',
+    role: 'Operations',
+    industries: ['General', 'Consulting'],
+    iconSlug: 'sop-builder-agent',
+    bestFor: ['Internal tools', 'Feature delivery', 'QA coordination'],
+    delivers: ['Feature briefs', 'Acceptance criteria', 'Release notes drafts'],
+    connectsTo: ['Project tracker', 'Docs', 'Feedback forms'],
+  }),
   createAgent({
     slug: 'email-organizer',
     name: 'Email Organizer',

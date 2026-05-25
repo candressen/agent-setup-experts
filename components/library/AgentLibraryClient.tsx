@@ -59,6 +59,7 @@ function AgentCard({ agent }: { agent: AgentLibraryItem }) {
       </div>
 
       <p className='text-sm leading-6 text-white/65'>{agent.description}</p>
+      <p className='mt-3 text-sm leading-6 text-white/45'>{agent.summary}</p>
 
       <div className='mt-4 flex flex-wrap gap-2 text-xs text-white/45'>
         <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5'>
@@ -67,6 +68,48 @@ function AgentCard({ agent }: { agent: AgentLibraryItem }) {
         <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5'>
           Install-ready workflow
         </span>
+      </div>
+
+      <div className='mt-5'>
+        <div className='text-[11px] font-medium uppercase tracking-[0.18em] text-white/35'>Best for</div>
+        <div className='mt-2 flex flex-wrap gap-2'>
+          {agent.bestFor.slice(0, 3).map((item) => (
+            <span
+              key={`${agent.slug}-bestfor-${item}`}
+              className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/55'
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className='mt-5 grid gap-3 sm:grid-cols-2'>
+        <div className='rounded-2xl border border-white/8 bg-black/20 p-3'>
+          <div className='text-[11px] font-medium uppercase tracking-[0.18em] text-white/35'>Delivers</div>
+          <ul className='mt-2 space-y-2'>
+            {agent.delivers.slice(0, 2).map((item) => (
+              <li key={`${agent.slug}-deliver-${item}`} className='flex gap-2 text-xs leading-5 text-white/60'>
+                <span className='text-[#60a5fa]'>✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className='rounded-2xl border border-white/8 bg-black/20 p-3'>
+          <div className='text-[11px] font-medium uppercase tracking-[0.18em] text-white/35'>Connects to</div>
+          <div className='mt-2 flex flex-wrap gap-2'>
+            {agent.connectsTo.slice(0, 3).map((item) => (
+              <span
+                key={`${agent.slug}-connect-${item}`}
+                className='rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-white/55'
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className='mt-5 flex flex-wrap gap-2'>
@@ -161,7 +204,7 @@ export default function AgentLibraryClient() {
       const matchesIndustry = industry === 'All' || agent.industries.includes(industry)
       const matchesQuery =
         normalizedQuery.length === 0 ||
-        [agent.name, agent.description, agent.role, ...agent.industries]
+        [agent.name, agent.description, agent.summary, agent.role, ...agent.industries, ...agent.bestFor, ...agent.delivers, ...agent.connectsTo]
           .join(' ')
           .toLowerCase()
           .includes(normalizedQuery)
@@ -189,7 +232,7 @@ export default function AgentLibraryClient() {
                 Browse the catalog
               </div>
               <h2 className='text-2xl font-semibold tracking-tight text-white md:text-3xl'>
-                Practical agent setups your business can actually use
+                Practical library agents your business can actually launch
               </h2>
               <p className='mt-3 max-w-3xl text-sm leading-6 text-white/60 md:text-base'>
                 Every setup can be tailored to your tools, inboxes, forms, CRM, and operating style.
@@ -216,7 +259,7 @@ export default function AgentLibraryClient() {
                   aria-label='Search agents'
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder='Search by name, role, or industry'
+                  placeholder='Search by name, role, use case, or tool'
                   className='w-full min-w-0 rounded-xl border border-white/10 bg-[#0a0a0a] py-3 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-[#2563EB]/50 lg:min-w-[320px]'
                 />
               </div>
@@ -330,21 +373,21 @@ export default function AgentLibraryClient() {
               How ASE uses this catalog
             </div>
             <h2 className='text-3xl font-semibold tracking-tight text-white md:text-4xl'>
-              Pick a starting point, then we install it around your real workflow
+              Pick your first library stack, then we install it around your real workflow
             </h2>
             <p className='mt-4 max-w-2xl text-base leading-7 text-white/60'>
               This library is not a pile of generic prompts. It is a menu of proven business workflows we can
-              set up, connect, test, and hand off cleanly. Most client projects start with one or two agents,
-              then expand once the first automations are live.
+              set up, connect, test, and hand off cleanly. Most projects start with 5 or 10 library agents,
+              then expand into custom builds once the first automations are live.
             </p>
           </div>
 
           <div className='rounded-3xl border border-white/10 bg-[#0a0a0a] p-7'>
             <div className='space-y-4'>
               {[
-                'Connect email, forms, CRM, calendar, and internal docs',
+                'Choose 5 agents, 10 agents, or go unlimited with custom builds',
+                'Connect email, forms, CRM, calendar, ads, and internal docs',
                 'Set review rules, escalation paths, and approval checkpoints',
-                'Launch a practical v1 first, then expand based on usage',
               ].map((item) => (
                 <div key={item} className='flex items-start gap-3'>
                   <span className='mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#2563EB]/15 text-sm text-[#93c5fd]'>

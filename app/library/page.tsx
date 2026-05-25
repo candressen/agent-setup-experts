@@ -6,7 +6,7 @@ import { AGENT_LIBRARY, AGENT_LIBRARY_PAGE_COPY } from '@/lib/agent-library'
 export const metadata: Metadata = {
   title: 'AI Agent Library for Small Business | Agent Setup Experts',
   description:
-    'Browse practical AI agents Agent Setup Experts can install for small businesses, including sales, operations, support, finance, recruiting, and executive workflows.',
+    'Browse ASE library agents for small business workflows, then choose the 5-agent, 10-agent, or custom stack that fits your business.',
   alternates: {
     canonical: '/library',
   },

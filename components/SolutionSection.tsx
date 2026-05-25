@@ -21,12 +21,12 @@ export default function SolutionSection() {
         <motion.div variants={fadeInUp} transition={{ duration: 0.5 }}>
           <div className="mb-4 text-xs uppercase tracking-[0.2em] text-[#2563EB]">THE SOLUTION</div>
           <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-            We Have Been Where You Are. And We Know How to Fix It.
+            Start with ASE&apos;s library, then expand only where your business needs more.
           </h2>
           <p className="mb-10 max-w-lg text-lg leading-relaxed text-white/60">
-            Most AI setups fail because businesses try to figure it out alone. We have deployed AI
-            agent systems for businesses like yours and we know exactly what works. We take care
-            of the entire setup — so you get a working system, not another experiment.
+            Most businesses do not need to invent every workflow from scratch. We help you choose the
+            right library agents first, install them around your tools, and then layer in custom work
+            only where it creates real leverage.
           </p>
           <a
             href={SITE.calendlyUrl}
@@ -41,7 +41,11 @@ export default function SolutionSection() {
         <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="rounded-2xl border border-white/10 bg-[#111] p-8">
           <div className="mb-6 text-xs uppercase tracking-[0.2em] text-white/40">What changes in 48 hours</div>
           <div className="mb-8 space-y-4">
-            {['Your team stops doing work AI should handle', 'Your systems talk to each other automatically', 'You get back hours every week, starting immediately'].map((item) => (
+            {[
+              'You stop guessing which agent to build first',
+              'Your selected library workflows get connected to the systems you already use',
+              'Your team gets a clear launch path with room to expand later',
+            ].map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <span className="mt-0.5 text-lg text-[#2563EB]">&#x2713;</span>
                 <span className="text-white/80">{item}</span>
@@ -51,15 +55,15 @@ export default function SolutionSection() {
           <div className='grid grid-cols-2 gap-6 border-t border-white/8 pt-8'>
             <div>
               <div className='text-3xl font-bold text-white'>48 hrs</div>
-              <div className='mt-1 text-sm text-white/40'>From call to live system</div>
+              <div className='mt-1 text-sm text-white/40'>From approved scope to launch</div>
             </div>
             <div>
-              <div className='text-3xl font-bold text-white'>from $1,000</div>
-              <div className='mt-1 text-sm text-white/40'>One-time setup fee</div>
+              <div className='text-3xl font-bold text-white'>from $2,000</div>
+              <div className='mt-1 text-sm text-white/40'>5 library agents installed</div>
             </div>
           </div>
           <p className='mt-4 text-xs text-white/30'>
-            AI provider API fees (OpenAI, Claude) billed separately.{' '}
+            Equipment starts at $400 one-time and is sold separately. AI provider API fees are billed separately.{' '}
             <Link href='/blog/understanding-ai-api-costs' className='text-[#2563EB]/60 transition hover:text-[#2563EB]'>Learn more</Link>
           </p>
         </motion.div>

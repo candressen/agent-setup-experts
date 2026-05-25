@@ -39,7 +39,7 @@ export default function HeroSection() {
         >
           <span className='h-1.5 w-1.5 rounded-full bg-[#60a5fa]' />
           <span className='text-xs font-medium uppercase tracking-[0.22em] text-white/70'>
-            Miami AI Setup — Done For You in 48 Hours
+            Miami AI setup, library-first, done for you in 48 hours
           </span>
         </motion.div>
 
@@ -48,25 +48,27 @@ export default function HeroSection() {
           transition={{ duration: 0.55, ease: 'easeOut' }}
           className='mb-6 mx-auto max-w-[780px] tracking-tight text-white'
         >
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Done-For-You AI Agents</span>
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>for Miami Small</span>
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Businesses.</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Launch ASE Library</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Agents for Your</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Business.</span>
         </motion.h1>
 
         <motion.p
           variants={fadeInUp}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          className='mx-auto mt-4 mb-6 max-w-md text-base leading-[1.6] text-white/60 md:text-lg'
+          className='mx-auto mb-6 mt-4 max-w-2xl text-base leading-[1.6] text-white/60 md:text-lg'
         >
-          We build, launch, and deploy your AI agent in 48 hours. No DIY tools. No tech stress. We handle everything — strategy, setup, and deployment.
+          Start with 5 or 10 install-ready library agents, or go unlimited with custom builds. We
+          handle strategy, setup, integrations, and launch so your team gets a working AI system,
+          not another experiment.
         </motion.p>
 
         <motion.div
           variants={fadeInUp}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          className='flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8'
+          className='mb-8 flex flex-wrap justify-center gap-x-6 gap-y-2'
         >
-          {['Live in 48 hours', 'Done for you', 'No tech needed', 'Built for small business'].map(b => (
+          {['5, 10, or unlimited agents', 'Monthly financing available', 'Equipment starts at $400', 'Built for small business'].map((b) => (
             <span key={b} className='flex items-center gap-1.5 text-sm text-white/60'>
               <span className='text-[#60a5fa]'>✓</span> {b}
             </span>
@@ -86,8 +88,8 @@ export default function HeroSection() {
           >
             Book Your Free Strategy Call
           </a>
-          <Link href='/#who-its-for' className='text-sm text-white/60 transition hover:text-white'>
-            See how it works for me
+          <Link href='/library' className='text-sm text-white/60 transition hover:text-white'>
+            Browse the library
           </Link>
         </motion.div>
       </motion.div>

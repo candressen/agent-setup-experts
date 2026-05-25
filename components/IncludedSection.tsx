@@ -6,13 +6,13 @@ const fadeInUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } 
 const stagger = { visible: { transition: { staggerChildren: 0.07 } } }
 
 const items = [
-  { title: 'Environment Setup', description: 'We configure the infrastructure your AI system needs to run reliably' },
-  { title: 'OpenClaw Deployment', description: 'Full installation and configuration of the OpenClaw agent framework' },
-  { title: 'API Integrations', description: 'Connected to your email, CRM, Slack, and other core business tools' },
-  { title: '1-3 Custom AI Agents', description: 'Built around your specific workflows, not generic templates' },
-  { title: 'Workflow Automation', description: 'End-to-end automations that move work without manual intervention' },
-  { title: 'Training Session', description: 'Your team learns exactly how to use and manage the system' },
-  { title: '30-Day Support', description: 'Post-launch availability to fix issues and make adjustments' },
+  { title: 'Library Agent Stack', description: 'Start with 5 or 10 ASE library agents, or go unlimited with custom-built additions.' },
+  { title: 'Workflow Setup', description: 'We map each selected agent to your real process so the automation fits how your team already works.' },
+  { title: 'Tool Connections', description: 'Connected to your email, CRM, calendar, ads, forms, and other core business systems.' },
+  { title: 'Approvals and Guardrails', description: 'Human review, escalation paths, and business rules are set up where they should be.' },
+  { title: 'Launch and Handoff', description: 'Your team gets a clean rollout, practical operating guidance, and launch support.' },
+  { title: 'Monthly Financing Option', description: 'Clear monthly payment view available for all three plans when that fits the purchase better.' },
+  { title: 'Hardware Note', description: 'Equipment is not included. Hardware starts at $400 one-time, and you keep the equipment.' },
 ] as const
 
 export default function IncludedSection() {
@@ -28,7 +28,7 @@ export default function IncludedSection() {
       <div className="mx-auto max-w-[1200px]">
         <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="mb-16 text-center">
           <div className="mb-4 text-xs uppercase tracking-[0.2em] text-white/40">WHAT YOU GET</div>
-          <h2 className="text-4xl font-bold text-white md:text-5xl">Everything You Need, Done For You</h2>
+          <h2 className="text-4xl font-bold text-white md:text-5xl">A Cohesive Agent Stack, Set Up for You</h2>
         </motion.div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {items.map((item, i) => (

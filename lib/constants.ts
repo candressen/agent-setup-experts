@@ -28,51 +28,75 @@ export const NAV_LINKS = [
 
 export const LOGO_PATH = '/logos/logo-full.svg'
 
+export const EQUIPMENT_NOTE = {
+  label: 'Equipment sold separately',
+  description:
+    'Required hardware is not included in any plan. Equipment starts at $400 one-time, and you keep the equipment.',
+} as const
+
+export const EARLY_CANCEL_NOTE =
+  'Plans are structured around a 12-month agreement. If you cancel early, the remaining unpaid setup balance becomes due.'
+
 export const PRICING_TIERS = [
   {
     id: 'starter',
-    name: 'Starter',
-    price: '$1,000',
-    priceNote: 'one-time setup fee',
-    headline: 'Autonomous AI Agent',
-    description: 'A fully functional OpenClaw-powered autonomous agent deployed for your business. Use it however you need — no customization, no hand-holding.',
+    name: 'Starter Library',
+    price: '$2,000',
+    priceNote: 'setup price for 5 library agents',
+    monthlyPrice: '$217/mo',
+    monthlyNote: '$2,600 financed total, split across 12 months',
+    financedTotal: '$2,600',
+    headline: 'Start with the core workflows that save time fastest',
+    description:
+      'Best for businesses that want ASE to install a focused starter stack from the library and get the first five agents live cleanly.',
     includes: [
-      'OpenClaw agent deployment',
-      'Environment and infrastructure setup',
-      'Ready to use out of the box',
+      '5 ASE library agents installed',
+      'Workflow setup and launch configuration',
+      'Connections to your key tools and inboxes',
+      'Team handoff and operating guidance',
+      '30 days of post-launch support',
     ],
-    cta: 'Get Started',
+    cta: 'Book a Strategy Call',
     highlight: false,
   },
   {
-    id: 'custom',
-    name: 'Custom',
-    price: '$4,000',
-    priceNote: 'one-time setup fee',
-    headline: 'Done-For-You AI Stack',
-    description: 'Full setup, customization, and workflow automation built around your specific business. Everything in Starter plus hands-on configuration.',
+    id: 'growth',
+    name: 'Growth Library',
+    price: '$3,000',
+    priceNote: 'setup price for 10 library agents',
+    monthlyPrice: '$325/mo',
+    monthlyNote: '$3,900 financed total, split across 12 months',
+    financedTotal: '$3,900',
+    headline: 'Build a fuller operating system around your team',
+    description:
+      'Best for businesses ready to launch a broader library stack across lead handling, follow-up, support, reporting, and admin workflows.',
     includes: [
-      'Everything in Starter',
-      'API integrations (email, CRM, Slack, and more)',
-      '1-3 custom AI agents built for your workflows',
-      'Workflow automation',
-      'Training session',
+      '10 ASE library agents installed',
+      'Cross-workflow setup across sales, ops, and support',
+      'Business tool integrations and approvals',
+      'Launch guidance for your team',
+      '30 days of post-launch support',
     ],
     cta: 'Book a Strategy Call',
     highlight: true,
   },
   {
-    id: 'enterprise',
-    name: 'Enterprise',
+    id: 'custom',
+    name: 'Custom Unlimited',
     price: '$10,000',
-    priceNote: 'one-time setup fee',
-    headline: 'Full Stack + 1 Year Support',
-    description: 'Everything in Custom plus a full year of dedicated support, maintenance, and ongoing optimization.',
+    priceNote: 'setup price for unlimited library + custom-built agents',
+    monthlyPrice: '$1,084/mo',
+    monthlyNote: '$13,000 financed total, split across 12 months',
+    financedTotal: '$13,000',
+    headline: 'Unlimited library coverage plus custom agent builds',
+    description:
+      'Best for teams that want ASE to deploy the library broadly, add custom agents, and architect a more tailored AI operating layer.',
     includes: [
-      'Everything in Custom',
-      '12 months of dedicated support',
-      'Ongoing maintenance and optimization',
-      'Priority response',
+      'Unlimited ASE library agents installed',
+      'Custom-built agents for unique workflows',
+      'Advanced workflow design and systems integration',
+      'Team training and rollout support',
+      '30 days of post-launch support',
     ],
     cta: 'Book a Strategy Call',
     highlight: false,

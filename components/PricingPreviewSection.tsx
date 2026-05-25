@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { SITE, PRICING_TIERS } from '@/lib/constants'
+import { EARLY_CANCEL_NOTE, EQUIPMENT_NOTE, SITE, PRICING_TIERS } from '@/lib/constants'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
@@ -35,10 +35,10 @@ export default function PricingPreviewSection() {
       >
         <div className="mb-4 text-xs uppercase tracking-[0.2em] text-white/40">PRICING</div>
         <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
-          Simple, Transparent Pricing
+          Library-first pricing with a clear monthly option
         </h2>
         <p className="mt-4 text-lg text-white/60">
-          Three tiers. One clear price. No monthly fees.
+          Choose 5 agents, 10 agents, or go unlimited with custom builds. Financing is shown clearly.
         </p>
       </motion.div>
 
@@ -65,8 +65,12 @@ export default function PricingPreviewSection() {
 
             <div className="mb-1 text-xs uppercase tracking-widest text-white/40">{tier.name}</div>
             <div className="text-4xl font-bold text-white">{tier.price}</div>
-            <div className="mb-3 mt-1 text-xs text-white/40">{tier.priceNote}</div>
-            <h3 className="mb-2 text-base font-semibold text-white">{tier.headline}</h3>
+            <div className="mt-1 text-xs text-white/40">{tier.priceNote}</div>
+            <div className="mb-3 mt-2 text-sm font-medium text-[#93c5fd]">or {tier.monthlyPrice}</div>
+            <div className="rounded-xl border border-[#2563EB]/15 bg-[#2563EB]/8 px-3 py-2 text-xs text-white/70">
+              {tier.monthlyNote}
+            </div>
+            <h3 className="mb-2 mt-4 text-base font-semibold text-white">{tier.headline}</h3>
 
             <ul className="space-y-2">
               {tier.includes.slice(0, 3).map((item) => (
@@ -93,7 +97,12 @@ export default function PricingPreviewSection() {
         ))}
       </motion.div>
 
-      <div className="mt-10 text-center text-xs text-white/30">
+      <div className="mx-auto mt-10 max-w-4xl rounded-2xl border border-white/10 bg-black/20 p-5 text-center text-sm text-white/55">
+        <p>{EQUIPMENT_NOTE.description}</p>
+        <p className="mt-2">{EARLY_CANCEL_NOTE}</p>
+      </div>
+
+      <div className="mt-6 text-center text-xs text-white/30">
         AI provider API fees (OpenAI, Claude) are billed separately based on usage.
         <Link
           href="/blog/understanding-ai-api-costs"

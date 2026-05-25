@@ -9,18 +9,18 @@ const stagger = { visible: { transition: { staggerChildren: 0.15 } } }
 const steps = [
   {
     number: '1',
-    title: 'You Tell Us How Your Business Works',
-    body: 'We start with a free 30-minute call. You walk us through your workflows, your tools, and where your team loses the most time. We map out exactly what your AI system needs to do.',
+    title: 'Pick the Right Agent Stack',
+    body: 'We start with a free strategy call. You walk us through the workflows that matter most, and we recommend the right 5-agent, 10-agent, or custom library stack for your business.',
   },
   {
     number: '2',
-    title: 'We Build It - You Stay Focused on Your Business',
-    body: 'Our team handles the full setup. We install OpenClaw, connect your tools, and configure AI agents around your specific workflows. No technical work required from you.',
+    title: 'We Install It Around Your Workflow',
+    body: 'Our team handles the full setup. We connect the tools, configure the agents, add approvals and guardrails, and make sure the stack fits your real operating process.',
   },
   {
     number: '3',
-    title: 'You Run a Faster, Smarter Business',
-    body: 'Your system goes live. Your team is trained. The repetitive work starts moving automatically. You get back hours every week - starting from day one.',
+    title: 'Launch, Train, and Expand from There',
+    body: 'Your system goes live, your team gets trained, and your first workflows start running. Once the foundation is in place, adding more library or custom agents gets much easier.',
   },
 ] as const
 
@@ -38,11 +38,11 @@ export default function HowItWorksSection() {
       <div className="mx-auto max-w-[1200px]">
         <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="mb-20 text-center">
           <div className="mb-4 text-xs uppercase tracking-[0.2em] text-white/40">THE PLAN</div>
-          <h2 className="text-4xl font-bold text-white md:text-5xl">Three Steps to a Business That Runs Smarter</h2>
+          <h2 className="text-4xl font-bold text-white md:text-5xl">Three Steps to a Working ASE Agent Stack</h2>
         </motion.div>
 
         <div className="relative grid grid-cols-1 gap-12 md:grid-cols-3">
-          <div className="pointer-events-none absolute top-5 left-[16.67%] right-[16.67%] hidden border-t border-dashed border-white/10 md:block" />
+          <div className="pointer-events-none absolute left-[16.67%] right-[16.67%] top-5 hidden border-t border-dashed border-white/10 md:block" />
           {steps.map((step) => (
             <motion.div key={step.number} variants={fadeInUp} transition={{ duration: 0.5 }} className="relative">
               <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-[#2563EB] text-sm font-bold text-white">

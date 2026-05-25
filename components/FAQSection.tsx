@@ -4,9 +4,24 @@ import { useState } from 'react'
 
 const items = [
   {
-    question: 'Is $2,000 worth it?',
+    question: 'How do the library plans work?',
     answer:
-      'If your team spends 10+ hours per week on repetitive work, this pays for itself in 6 weeks at $30/hour rates. The more repetitive your operations, the faster the return.',
+      'Starter includes 5 ASE library agents for a $2,000 setup. Growth includes 10 library agents for a $3,000 setup. Custom is $10,000 for unlimited library agents plus custom-built agents.',
+  },
+  {
+    question: 'Can we pay monthly instead of all at once?',
+    answer:
+      'Yes. We can present the setup on a 12-month financing view. Starter is $2,600 total financed, shown as about $217 per month. Growth is $3,900 total financed, about $325 per month. Custom is $13,000 total financed, about $1,084 per month.',
+  },
+  {
+    question: 'Is equipment included?',
+    answer:
+      'No. Equipment is not included in the setup price. Hardware starts at $400 one-time, and your business keeps the equipment.',
+  },
+  {
+    question: 'What happens if we cancel early?',
+    answer:
+      'These plans are structured around a 12-month agreement. If you choose to cancel early, the remaining unpaid setup balance becomes due. We keep the wording simple so there are no surprises.',
   },
   {
     question: 'We tried ChatGPT and it did not work.',
@@ -14,19 +29,9 @@ const items = [
       'ChatGPT is a tool. We build the system. Knowing what to automate, how to connect your tools, and how to configure agents that actually run reliably is a different skill set.',
   },
   {
-    question: 'What if it breaks after you leave?',
-    answer:
-      'You get 30 days of post-launch support included. After that, our $200/month plan keeps us available for maintenance, fixes, and updates.',
-  },
-  {
     question: 'How long does it actually take?',
     answer:
       'The deployment is completed within 48 hours of starting the build. The strategy call and scoping happen before that, usually in the same week.',
-  },
-  {
-    question: 'Do we need technical staff to maintain it?',
-    answer:
-      'No. We train your team during the handoff and document everything. The system is designed to run without ongoing technical management from your side.',
   },
 ] as const
 
@@ -62,7 +67,7 @@ export default function FAQSection() {
                   </span>
                 </button>
                 {isOpen ? (
-                  <div className="px-6 pb-5 text-white/60 leading-relaxed">{item.answer}</div>
+                  <div className="px-6 pb-5 leading-relaxed text-white/60">{item.answer}</div>
                 ) : null}
               </div>
             )
