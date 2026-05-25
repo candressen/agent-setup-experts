@@ -53,7 +53,7 @@ export default async function BlogPostPage({
           Ready to automate your business?
         </h3>
         <p className='mb-6 text-gray-600'>
-          Book a free 30-minute strategy call and get a working AI system in 48 hours.
+          Book a free 30-minute strategy call and get your first ASE workflows live fast.
         </p>
         <a
           href='https://calendly.com/agentsetupexperts/30min?redirect_url=https://agentsetupexperts.com/thank-you'

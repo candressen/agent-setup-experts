@@ -19,7 +19,7 @@ export default function PricingPage() {
             Library Pricing. Clear Setup. Clear Monthly View.
           </h1>
           <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-white/60 md:text-xl">
-            Choose the ASE library stack that fits now, then expand when the first workflows are live.
+            Choose the ASE library stack that fits now. We launch the first workflows fast, then expand the stack cleanly.
             Equipment is separate, and monthly financing is shown up front.
           </p>
         </div>

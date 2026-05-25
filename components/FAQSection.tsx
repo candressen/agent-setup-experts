@@ -31,7 +31,7 @@ const items = [
   {
     question: 'How long does it actually take?',
     answer:
-      'The deployment is completed within 48 hours of starting the build. The strategy call and scoping happen before that, usually in the same week.',
+      'Once scope is approved, the first workflows are typically launched within 48 hours. Larger 10-agent and unlimited projects can keep expanding after that initial launch.',
   },
 ] as const
 

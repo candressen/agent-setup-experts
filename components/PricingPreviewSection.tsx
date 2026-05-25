@@ -38,7 +38,7 @@ export default function PricingPreviewSection() {
           Library-first pricing with a clear monthly option
         </h2>
         <p className="mt-4 text-lg text-white/60">
-          Choose 5 agents, 10 agents, or go unlimited with custom builds. Financing is shown clearly.
+          Choose 5 agents, 10 agents, or go unlimited with custom builds. Your first workflows launch fast, and financing is shown clearly.
         </p>
       </motion.div>
 

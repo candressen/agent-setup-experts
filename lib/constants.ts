@@ -1,6 +1,6 @@
 export const SITE = {
   name: 'Agent Setup Experts',
-  tagline: 'Your Business. Running on AI. In 48 Hours.',
+  tagline: 'Your First ASE Workflows, Live in 48 Hours.',
   url: 'https://agentsetupexperts.com',
   email: 'agentsetupexperts@gmail.com',
   phone: '704-490-9493',
@@ -51,7 +51,7 @@ export const PRICING_TIERS = [
       'Best for businesses that want ASE to install a focused starter stack from the library and get the first five agents live cleanly.',
     includes: [
       '5 ASE library agents installed',
-      'Workflow setup and launch configuration',
+      'First workflows launched within 48 hours of approved scope',
       'Connections to your key tools and inboxes',
       'Team handoff and operating guidance',
       '30 days of post-launch support',
@@ -72,7 +72,7 @@ export const PRICING_TIERS = [
       'Best for businesses ready to launch a broader library stack across lead handling, follow-up, support, reporting, and admin workflows.',
     includes: [
       '10 ASE library agents installed',
-      'Cross-workflow setup across sales, ops, and support',
+      'Core stack launched fast, then expanded across sales, ops, and support',
       'Business tool integrations and approvals',
       'Launch guidance for your team',
       '30 days of post-launch support',
@@ -93,7 +93,7 @@ export const PRICING_TIERS = [
       'Best for teams that want ASE to deploy the library broadly, add custom agents, and architect a more tailored AI operating layer.',
     includes: [
       'Unlimited ASE library agents installed',
-      'Custom-built agents for unique workflows',
+      'Phased rollout for broader library coverage plus custom workflows',
       'Advanced workflow design and systems integration',
       'Team training and rollout support',
       '30 days of post-launch support',

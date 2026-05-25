@@ -15,7 +15,7 @@ import WhoItsForSection from '@/components/WhoItsForSection'
 export const metadata: Metadata = {
   title: 'Library AI Agents for Miami Small Businesses | Agent Setup Experts',
   description:
-    'Launch 5 ASE library agents, 10 agents, or a custom unlimited stack for your Miami small business. Done-for-you setup in 48 hours.',
+    'Launch a focused ASE library stack for your Miami small business, then expand to 10 agents or unlimited custom work. First workflows go live in 48 hours.',
 }
 
 export default function Home() {

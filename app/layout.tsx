@@ -12,21 +12,21 @@ export const metadata: Metadata = {
     template: '%s | Agent Setup Experts',
   },
   description:
-    'We install and configure AI agents for your business in 48 hours. Done-for-you setup, workflow automation, and training. Book a free call.',
+    'We install and configure AI agents for your business, with first workflows typically live in 48 hours. Done-for-you setup, workflow automation, and training.',
   metadataBase: new URL('https://agentsetupexperts.com'),
   verification: { google: 'vzC--c4qZJ_N4SVotGBT98t2OrpHiMAK3zZ1LRlu7uI' },
   openGraph: {
     type: 'website',
     siteName: 'Agent Setup Experts',
     title: 'AI Agent Setup Service | Agent Setup Experts',
-    description: 'We install and configure AI agents for your business in 48 hours.',
+    description: 'We install and configure AI agents for your business, with first workflows typically live in 48 hours.',
     url: 'https://agentsetupexperts.com',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Agent Setup Experts' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AI Agent Setup Service | Agent Setup Experts',
-    description: 'We install and configure AI agents for your business in 48 hours.',
+    description: 'We install and configure AI agents for your business, with first workflows typically live in 48 hours.',
     images: ['/og-image.png'],
   },
 };

@@ -39,7 +39,7 @@ export default function HeroSection() {
         >
           <span className='h-1.5 w-1.5 rounded-full bg-[#60a5fa]' />
           <span className='text-xs font-medium uppercase tracking-[0.22em] text-white/70'>
-            Miami AI setup, library-first, done for you in 48 hours
+            Miami AI setup, library-first, first workflows live in 48 hours
           </span>
         </motion.div>
 
@@ -59,8 +59,8 @@ export default function HeroSection() {
           className='mx-auto mb-6 mt-4 max-w-2xl text-base leading-[1.6] text-white/60 md:text-lg'
         >
           Start with 5 or 10 install-ready library agents, or go unlimited with custom builds. We
-          handle strategy, setup, integrations, and launch so your team gets a working AI system,
-          not another experiment.
+          handle strategy, setup, integrations, and launch so your first workflows go live fast and
+          the broader system expands cleanly from there.
         </motion.p>
 
         <motion.div

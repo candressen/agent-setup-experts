@@ -377,15 +377,15 @@ export default function AgentLibraryClient() {
             </h2>
             <p className='mt-4 max-w-2xl text-base leading-7 text-white/60'>
               This library is not a pile of generic prompts. It is a menu of proven business workflows we can
-              set up, connect, test, and hand off cleanly. Most projects start with 5 or 10 library agents,
-              then expand into custom builds once the first automations are live.
+              set up, connect, test, and hand off cleanly. Most projects start with a focused 5-agent or
+              10-agent launch, then expand into a broader stack or custom builds once the first automations are live.
             </p>
           </div>
 
           <div className='rounded-3xl border border-white/10 bg-[#0a0a0a] p-7'>
             <div className='space-y-4'>
               {[
-                'Choose 5 agents, 10 agents, or go unlimited with custom builds',
+                'Start with a focused stack, then expand into 10 agents or unlimited builds',
                 'Connect email, forms, CRM, calendar, ads, and internal docs',
                 'Set review rules, escalation paths, and approval checkpoints',
               ].map((item) => (

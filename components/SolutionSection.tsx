@@ -39,12 +39,12 @@ export default function SolutionSection() {
         </motion.div>
 
         <motion.div variants={fadeInUp} transition={{ duration: 0.5 }} className="rounded-2xl border border-white/10 bg-[#111] p-8">
-          <div className="mb-6 text-xs uppercase tracking-[0.2em] text-white/40">What changes in 48 hours</div>
+          <div className="mb-6 text-xs uppercase tracking-[0.2em] text-white/40">What launches in the first 48 hours</div>
           <div className="mb-8 space-y-4">
             {[
               'You stop guessing which agent to build first',
-              'Your selected library workflows get connected to the systems you already use',
-              'Your team gets a clear launch path with room to expand later',
+              'Your first selected library workflows get connected to the systems you already use',
+              'Your team gets a clear rollout path for the rest of the stack after that first launch',
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <span className="mt-0.5 text-lg text-[#2563EB]">&#x2713;</span>
@@ -55,7 +55,7 @@ export default function SolutionSection() {
           <div className='grid grid-cols-2 gap-6 border-t border-white/8 pt-8'>
             <div>
               <div className='text-3xl font-bold text-white'>48 hrs</div>
-              <div className='mt-1 text-sm text-white/40'>From approved scope to launch</div>
+              <div className='mt-1 text-sm text-white/40'>From approved scope to first workflows live</div>
             </div>
             <div>
               <div className='text-3xl font-bold text-white'>from $2,000</div>
