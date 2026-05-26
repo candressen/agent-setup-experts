@@ -122,6 +122,18 @@ function AgentCard({ agent }: { agent: AgentLibraryItem }) {
           </span>
         ))}
       </div>
+
+      <div className='mt-6 flex items-center justify-between gap-3 border-t border-white/8 pt-5'>
+        <div className='text-sm text-white/45'>Open the full workflow breakdown.</div>
+        <Link
+          href={`/library/${agent.slug}`}
+          className='inline-flex items-center gap-2 rounded-full border border-[#2563EB]/35 bg-[#2563EB]/10 px-4 py-2 text-sm font-medium text-[#bfdbfe] transition hover:border-[#2563EB]/60 hover:bg-[#2563EB]/15 hover:text-white'
+          aria-label={`View details for ${agent.name}`}
+        >
+          View details
+          <span aria-hidden='true'>→</span>
+        </Link>
+      </div>
     </article>
   )
 }

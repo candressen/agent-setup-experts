@@ -33,6 +33,8 @@ export type AgentLibraryItem = {
   bestFor: string[]
   delivers: string[]
   connectsTo: string[]
+  workflowFit: string
+  commonTriggers: string[]
   iconSlug: string
   visualId: string
   image: string
@@ -132,16 +134,45 @@ export const AGENT_LIBRARY_PAGE_COPY = {
     'Browse the install-ready agent catalog, choose the workflows you want first, and let ASE deploy them around your tools, approvals, and team.',
 } as const
 
+const DEFAULT_WORKFLOW_FIT_BY_ROLE: Record<AgentRole, string> = {
+  Marketing:
+    'Usually fits after campaign planning and before publishing or optimization review, so the team keeps execution moving without losing brand control.',
+  Operations:
+    'Usually sits in the middle of the delivery workflow, keeping requests, routing, scheduling, and internal follow-through moving between handoffs.',
+  Sales:
+    'Usually fits between first inquiry and human close, helping the team respond faster, qualify leads, and keep next steps from stalling.',
+  Support:
+    'Usually serves as the first response layer, resolving routine requests and routing edge cases before they create inbox or phone backlog.',
+  Finance:
+    'Usually fits after work is completed and before reporting or collections, reducing manual admin across billing and bookkeeping workflows.',
+  Recruiting:
+    'Usually supports the path from applicant intake through scheduling and follow-up, helping the hiring process stay responsive and organized.',
+  Executive:
+    'Usually turns scattered business activity into leadership visibility, so owners get cleaner updates without chasing details across systems.',
+}
+
+const DEFAULT_COMMON_TRIGGERS_BY_ROLE: Record<AgentRole, string[]> = {
+  Marketing: ['New campaign asset request', 'Scheduled reporting cadence', 'Offer or promo launch'],
+  Operations: ['New form or inbox submission', 'Task status change', 'Calendar or routing update'],
+  Sales: ['New lead captured', 'Follow-up window reached', 'Pipeline stage changed'],
+  Support: ['Inbound customer question', 'Missed call or message', 'Status update requested'],
+  Finance: ['Invoice or transaction created', 'Payment due date reached', 'Month-end review started'],
+  Recruiting: ['New applicant received', 'Interview step completed', 'Candidate follow-up due'],
+  Executive: ['Daily or weekly reporting cadence', 'Meeting completed', 'Priority or KPI update needed'],
+}
+
 const createAgent = ({
   slug,
   iconSlug,
   ...agent
-}: Omit<AgentLibraryItem, 'image' | 'visualId' | 'iconSlug' | 'summary' | 'bestFor' | 'delivers' | 'connectsTo'> & {
+}: Omit<AgentLibraryItem, 'image' | 'visualId' | 'iconSlug' | 'summary' | 'bestFor' | 'delivers' | 'connectsTo' | 'workflowFit' | 'commonTriggers'> & {
   iconSlug?: string
   summary?: string
   bestFor?: string[]
   delivers?: string[]
   connectsTo?: string[]
+  workflowFit?: string
+  commonTriggers?: string[]
 }): AgentLibraryItem => {
   const resolvedIconSlug = iconSlug ?? slug
 
@@ -152,10 +183,16 @@ const createAgent = ({
     bestFor: agent.bestFor ?? agent.industries,
     delivers: agent.delivers ?? ['Configured workflow', 'ASE setup', 'Team-ready handoff'],
     connectsTo: agent.connectsTo ?? ['Email', 'Calendar', 'Forms'],
+    workflowFit: agent.workflowFit ?? DEFAULT_WORKFLOW_FIT_BY_ROLE[agent.role],
+    commonTriggers: agent.commonTriggers ?? DEFAULT_COMMON_TRIGGERS_BY_ROLE[agent.role],
     iconSlug: resolvedIconSlug,
     visualId: `icon-${resolvedIconSlug}`,
     image: `/agent-library-icons/${resolvedIconSlug}.png`,
   }
+}
+
+export function getAgentBySlug(slug: string) {
+  return AGENT_LIBRARY.find((agent) => agent.slug === slug)
 }
 
 export const AGENT_LIBRARY: AgentLibraryItem[] = [
