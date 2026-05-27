@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import {
   AGENT_INDUSTRY_FILTERS,
@@ -15,7 +15,52 @@ import {
   type AgentLibraryItem,
   type AgentRole,
 } from '@/lib/agent-library'
+import { trackEvent } from '@/lib/analytics'
 import { SITE } from '@/lib/constants'
+
+function filterAgents({
+  role,
+  industry,
+  query,
+}: {
+  role: 'All' | AgentRole
+  industry: 'All' | AgentIndustry
+  query: string
+}) {
+  const normalizedQuery = query.trim().toLowerCase()
+
+  return AGENT_LIBRARY.filter((agent) => {
+    const matchesRole = role === 'All' || agent.role === role
+    const matchesIndustry = industry === 'All' || agent.industries.includes(industry)
+    const matchesQuery =
+      normalizedQuery.length === 0 ||
+      [agent.name, agent.description, agent.summary, agent.role, ...agent.industries, ...agent.bestFor, ...agent.delivers, ...agent.connectsTo]
+        .join(' ')
+        .toLowerCase()
+        .includes(normalizedQuery)
+
+    return matchesRole && matchesIndustry && matchesQuery
+  })
+}
+
+function getLibraryEventContext({
+  role,
+  industry,
+  query,
+  resultsCount,
+}: {
+  role: 'All' | AgentRole
+  industry: 'All' | AgentIndustry
+  query: string
+  resultsCount: number
+}) {
+  return {
+    role: role === 'All' ? 'all' : role,
+    industry: industry === 'All' ? 'all' : industry,
+    query_length: query.trim().length,
+    results_count: resultsCount,
+  }
+}
 
 function FilterChip({
   active,
@@ -42,7 +87,17 @@ function FilterChip({
   )
 }
 
-function AgentCard({ agent }: { agent: AgentLibraryItem }) {
+function AgentCard({
+  agent,
+  role,
+  industry,
+  query,
+}: {
+  agent: AgentLibraryItem
+  role: 'All' | AgentRole
+  industry: 'All' | AgentIndustry
+  query: string
+}) {
   return (
     <article className='group rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition hover:border-white/20 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))]'>
       <div className='mb-4 flex items-start gap-4'>
@@ -127,6 +182,16 @@ function AgentCard({ agent }: { agent: AgentLibraryItem }) {
         <div className='text-sm text-white/45'>Open the full workflow breakdown.</div>
         <Link
           href={`/library/${agent.slug}`}
+          onClick={() =>
+            trackEvent('library_card_click', {
+              agent_slug: agent.slug,
+              role: agent.role,
+              industry: agent.industries[0] ?? 'General',
+              selected_role: role === 'All' ? 'all' : role,
+              selected_industry: industry === 'All' ? 'all' : industry,
+              query_length: query.trim().length,
+            })
+          }
           className='inline-flex items-center gap-2 rounded-full border border-[#2563EB]/35 bg-[#2563EB]/10 px-4 py-2 text-sm font-medium text-[#bfdbfe] transition hover:border-[#2563EB]/60 hover:bg-[#2563EB]/15 hover:text-white'
           aria-label={`View details for ${agent.name}`}
         >
@@ -161,6 +226,10 @@ export default function AgentLibraryClient() {
   const [industry, setIndustry] = useState<'All' | AgentIndustry>('All')
   const [query, setQuery] = useState('')
   const [copied, setCopied] = useState(false)
+
+  const hasTrackedInitialSearch = useRef(false)
+  const previousQuery = useRef('')
+  const previousZeroResultsKey = useRef<string | null>(null)
 
   useEffect(() => {
     setRole(parseRoleParam(searchParams.get('role')))
@@ -208,22 +277,50 @@ export default function AgentLibraryClient() {
     industry === 'All' ? null : AGENT_INDUSTRY_OPTIONS.find((item) => item.value === industry)
   const activeFilterCount = [role !== 'All', industry !== 'All', query.trim().length > 0].filter(Boolean).length
 
-  const filteredAgents = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase()
+  const filteredAgents = useMemo(() => filterAgents({ role, industry, query }), [industry, query, role])
 
-    return AGENT_LIBRARY.filter((agent) => {
-      const matchesRole = role === 'All' || agent.role === role
-      const matchesIndustry = industry === 'All' || agent.industries.includes(industry)
-      const matchesQuery =
-        normalizedQuery.length === 0 ||
-        [agent.name, agent.description, agent.summary, agent.role, ...agent.industries, ...agent.bestFor, ...agent.delivers, ...agent.connectsTo]
-          .join(' ')
-          .toLowerCase()
-          .includes(normalizedQuery)
+  useEffect(() => {
+    if (!hasTrackedInitialSearch.current) {
+      hasTrackedInitialSearch.current = true
+      previousQuery.current = query
+      return
+    }
 
-      return matchesRole && matchesIndustry && matchesQuery
-    })
+    if (query === previousQuery.current) {
+      return
+    }
+
+    previousQuery.current = query
+
+    const timeout = window.setTimeout(() => {
+      trackEvent('library_search', {
+        ...getLibraryEventContext({
+          role,
+          industry,
+          query,
+          resultsCount: filterAgents({ role, industry, query }).length,
+        }),
+      })
+    }, 450)
+
+    return () => window.clearTimeout(timeout)
   }, [industry, query, role])
+
+  useEffect(() => {
+    if (filteredAgents.length !== 0) {
+      previousZeroResultsKey.current = null
+      return
+    }
+
+    const zeroResultsKey = `${role}|${industry}|${query.trim().toLowerCase()}`
+
+    if (previousZeroResultsKey.current === zeroResultsKey) {
+      return
+    }
+
+    previousZeroResultsKey.current = zeroResultsKey
+    trackEvent('library_zero_results', getLibraryEventContext({ role, industry, query, resultsCount: 0 }))
+  }, [filteredAgents.length, industry, query, role])
 
   const handleCopyFilteredLink = async () => {
     try {
@@ -232,6 +329,42 @@ export default function AgentLibraryClient() {
     } catch {
       setCopied(false)
     }
+  }
+
+  const handleRoleChange = (nextRole: 'All' | AgentRole) => {
+    if (nextRole === role) {
+      return
+    }
+
+    trackEvent('library_filter_change', {
+      filter_type: 'role',
+      ...getLibraryEventContext({
+        role: nextRole,
+        industry,
+        query,
+        resultsCount: filterAgents({ role: nextRole, industry, query }).length,
+      }),
+    })
+
+    setRole(nextRole)
+  }
+
+  const handleIndustryChange = (nextIndustry: 'All' | AgentIndustry) => {
+    if (nextIndustry === industry) {
+      return
+    }
+
+    trackEvent('library_filter_change', {
+      filter_type: 'industry',
+      ...getLibraryEventContext({
+        role,
+        industry: nextIndustry,
+        query,
+        resultsCount: filterAgents({ role, industry: nextIndustry, query }).length,
+      }),
+    })
+
+    setIndustry(nextIndustry)
   }
 
   return (
@@ -282,13 +415,13 @@ export default function AgentLibraryClient() {
             <div>
               <div className='mb-3 text-sm font-medium text-white/75'>Role</div>
               <div className='flex flex-wrap gap-2'>
-                <FilterChip active={role === 'All'} label='All roles' onClick={() => setRole('All')} />
+                <FilterChip active={role === 'All'} label='All roles' onClick={() => handleRoleChange('All')} />
                 {AGENT_ROLE_FILTERS.map((item) => (
                   <FilterChip
                     key={item}
                     active={role === item}
                     label={item}
-                    onClick={() => setRole(item)}
+                    onClick={() => handleRoleChange(item)}
                   />
                 ))}
               </div>
@@ -303,14 +436,14 @@ export default function AgentLibraryClient() {
                 <FilterChip
                   active={industry === 'All'}
                   label='All industries'
-                  onClick={() => setIndustry('All')}
+                  onClick={() => handleIndustryChange('All')}
                 />
                 {AGENT_INDUSTRY_FILTERS.map((item) => (
                   <FilterChip
                     key={item}
                     active={industry === item}
                     label={item}
-                    onClick={() => setIndustry(item)}
+                    onClick={() => handleIndustryChange(item)}
                   />
                 ))}
               </div>
@@ -362,7 +495,7 @@ export default function AgentLibraryClient() {
         <div className='mx-auto max-w-[1200px]'>
           <div className='grid gap-5 sm:grid-cols-2 xl:grid-cols-3'>
             {filteredAgents.map((agent) => (
-              <AgentCard key={agent.slug} agent={agent} />
+              <AgentCard key={agent.slug} agent={agent} role={role} industry={industry} query={query} />
             ))}
           </div>
 

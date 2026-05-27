@@ -1,8 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { AgentLibraryItem } from '@/lib/agent-library'
+import { trackEvent } from '@/lib/analytics'
 import { SITE } from '@/lib/constants'
 
 function DetailSection({
@@ -21,6 +24,17 @@ function DetailSection({
       <div className='mt-4'>{children}</div>
     </section>
   )
+}
+
+function trackDetailCtaClick(agent: AgentLibraryItem, ctaType: string, destination: string) {
+  trackEvent('library_detail_cta_click', {
+    agent_slug: agent.slug,
+    role: agent.role,
+    industry: agent.industries[0] ?? 'General',
+    industries: agent.industries,
+    cta_type: ctaType,
+    destination,
+  })
 }
 
 export default function AgentDetailPage({ agent }: { agent: AgentLibraryItem }) {
@@ -81,12 +95,14 @@ export default function AgentDetailPage({ agent }: { agent: AgentLibraryItem }) 
                   href={SITE.calendlyUrl}
                   target='_blank'
                   rel='noreferrer'
+                  onClick={() => trackDetailCtaClick(agent, 'book_strategy_call', 'calendly')}
                   className='block rounded-2xl bg-[#2563EB] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#1d4ed8]'
                 >
                   Book a strategy call
                 </a>
                 <Link
                   href='/contact'
+                  onClick={() => trackDetailCtaClick(agent, 'ask_about_agent', 'contact')}
                   className='block rounded-2xl border border-white/15 px-5 py-3 text-center text-sm font-semibold text-white/75 transition hover:border-white/30 hover:text-white'
                 >
                   Ask about this agent
@@ -128,7 +144,7 @@ export default function AgentDetailPage({ agent }: { agent: AgentLibraryItem }) 
       <section className='bg-[#0a0a0a] px-6 pb-16 md:pb-24'>
         <div className='mx-auto grid max-w-[1200px] gap-6 lg:grid-cols-[1fr_1fr]'>
           <DetailSection eyebrow='What it does' title='Practical day-to-day job'>
-            <div className='space-y-4 max-w-2xl text-sm leading-7 text-white/62 md:text-base'>
+            <div className='max-w-2xl space-y-4 text-sm leading-7 text-white/62 md:text-base'>
               <p>{agent.description}</p>
               <p className='text-white/50'>{agent.summary}</p>
             </div>
@@ -187,6 +203,7 @@ export default function AgentDetailPage({ agent }: { agent: AgentLibraryItem }) 
                 href={SITE.calendlyUrl}
                 target='_blank'
                 rel='noreferrer'
+                onClick={() => trackDetailCtaClick(agent, 'talk_through_setup', 'calendly')}
                 className='rounded-xl bg-[#2563EB] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#1d4ed8]'
               >
                 Talk through your setup
