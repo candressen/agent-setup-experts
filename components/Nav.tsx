@@ -16,7 +16,7 @@ export default function Nav() {
               alt=''
               width={28}
               height={28}
-              className='h-32 w-32 flex-shrink-0 brightness-0 invert'
+              className='h-7 w-7 flex-shrink-0 brightness-0 invert'
               priority
             />
             <span className='whitespace-nowrap text-base font-semibold tracking-tight text-white'>
