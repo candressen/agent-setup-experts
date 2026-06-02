@@ -1,8 +1,10 @@
 'use client'
 
+import { useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { SITE } from '@/lib/constants'
+import { HOME_ANNOUNCEMENT_TEXT, SITE } from '@/lib/constants'
+import useObservedHeightCssVariable from '@/components/useObservedHeightCssVariable'
 
 const container = {
   hidden: {},
@@ -20,8 +22,25 @@ const fadeInUp = {
 }
 
 export default function HeroSection() {
+  const announcementRef = useRef<HTMLDivElement>(null)
+
+  useObservedHeightCssVariable(announcementRef, '--mobile-announcement-height')
+
   return (
     <section className='relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a]'>
+      <div
+        ref={announcementRef}
+        data-home-announcement
+        className='fixed inset-x-0 z-[50] border-b border-[#2563EB]/20 bg-[rgba(10,14,24,0.94)] backdrop-blur-[12px] md:hidden'
+        style={{ top: 'var(--mobile-header-height)' }}
+      >
+        <div className='mx-auto max-w-[1200px] px-6 py-2.5'>
+          <p className='text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white/80'>
+            {HOME_ANNOUNCEMENT_TEXT}
+          </p>
+        </div>
+      </div>
+
       <div className='pointer-events-none absolute inset-0'>
         <div className='absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.25)_0%,rgba(0,0,0,0)_60%)] blur-2xl opacity-50' />
       </div>
@@ -35,7 +54,7 @@ export default function HeroSection() {
         <motion.div
           variants={fadeInUp}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          className='mb-4 inline-flex items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.04] px-4 py-1.5'
+          className='mb-4 hidden items-center gap-2 rounded-full border border-white/[0.15] bg-white/[0.04] px-4 py-1.5 md:inline-flex'
         >
           <span className='h-1.5 w-1.5 rounded-full bg-[#60a5fa]' />
           <span className='text-xs font-medium uppercase tracking-[0.22em] text-white/70'>

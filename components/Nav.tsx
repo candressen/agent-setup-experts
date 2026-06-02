@@ -1,13 +1,23 @@
 'use client'
 
+import { useRef } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { NAV_LINKS, SITE } from '@/lib/constants'
+import useObservedHeightCssVariable from '@/components/useObservedHeightCssVariable'
 
 export default function Nav() {
+  const navRef = useRef<HTMLElement>(null)
+
+  useObservedHeightCssVariable(navRef, '--mobile-header-height')
+
   return (
-    <nav className='fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[rgba(10,10,10,0.92)] backdrop-blur-[12px]'>
+    <nav
+      ref={navRef}
+      className='fixed top-0 left-0 right-0 z-[60] border-b border-white/5 bg-[rgba(10,10,10,0.92)] backdrop-blur-[12px]'
+    >
       <div className='mx-auto max-w-[1200px] px-6 py-3'>
         <div className='flex items-center justify-between gap-4'>
           <Link href='/' aria-label={SITE.name} className='flex items-center gap-2'>

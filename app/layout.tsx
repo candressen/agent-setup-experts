@@ -85,7 +85,7 @@ export default async function RootLayout({
       </head>
       <body className="bg-[#0a0a0a] text-white antialiased">
         <Nav />
-        <main className="pt-28 md:pt-20">{children}</main>
+        <main className="pt-[var(--mobile-site-top-offset)] md:pt-20">{children}</main>
         <Footer />
         <CookieConsent initialConsent={initialConsent} />
       </body>

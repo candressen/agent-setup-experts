@@ -28,6 +28,8 @@ export const NAV_LINKS = [
 
 export const LOGO_PATH = '/logos/logo-full.svg'
 
+export const HOME_ANNOUNCEMENT_TEXT = 'First Workflows Live in 48 Hours'
+
 export const EQUIPMENT_NOTE = {
   label: 'Equipment sold separately',
   description:

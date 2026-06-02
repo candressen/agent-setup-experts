@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --mobile-header-height: 7rem;
+  --mobile-announcement-height: 0px;
+  --mobile-site-top-offset: var(--mobile-header-height);
 }
 
 @theme inline {
@@ -17,6 +20,25 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@media (max-width: 767px) {
+  :root:has([data-home-announcement]) {
+    --mobile-announcement-height: 2.5rem;
+    --mobile-site-top-offset: calc(var(--mobile-header-height) + var(--mobile-announcement-height));
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --mobile-header-height: 5rem;
+    --mobile-announcement-height: 0px;
+    --mobile-site-top-offset: 5rem;
+  }
+}
+
+html {
+  scroll-padding-top: var(--mobile-site-top-offset);
 }
 
 body {
