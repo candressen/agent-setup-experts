@@ -3,9 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --mobile-header-height: 7rem;
+  --mobile-header-height: 8rem;
   --mobile-announcement-height: 0px;
-  --mobile-site-top-offset: var(--mobile-header-height);
+  --mobile-site-top-offset: calc(var(--mobile-header-height) + var(--mobile-announcement-height));
 }
 
 @theme inline {
@@ -21,14 +21,6 @@
     --foreground: #ededed;
   }
 }
-
-@media (max-width: 767px) {
-  :root:has([data-home-announcement]) {
-    --mobile-announcement-height: 2.5rem;
-    --mobile-site-top-offset: calc(var(--mobile-header-height) + var(--mobile-announcement-height));
-  }
-}
-
 @media (min-width: 768px) {
   :root {
     --mobile-header-height: 5rem;
