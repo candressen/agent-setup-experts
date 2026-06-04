@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import ClosingCTASection from '@/components/ClosingCTASection'
 import FAQSection from '@/components/FAQSection'
+import HomeAnnouncementBar from '@/components/HomeAnnouncementBar'
 import HeroSection from '@/components/HeroSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
 import IncludedSection from '@/components/IncludedSection'
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <HomeAnnouncementBar />
       <HeroSection />
       <SocialProofBar />
       <MiamiIndustriesStrip />
