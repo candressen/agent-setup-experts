@@ -4,8 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --mobile-header-height: 8rem;
-  --mobile-announcement-height: 0px;
-  --mobile-site-top-offset: calc(var(--mobile-header-height) + var(--mobile-announcement-height));
+  --mobile-site-top-offset: var(--mobile-header-height);
 }
 
 @theme inline {
@@ -24,7 +23,6 @@
 @media (min-width: 768px) {
   :root {
     --mobile-header-height: 5rem;
-    --mobile-announcement-height: 0px;
     --mobile-site-top-offset: 5rem;
   }
 }
