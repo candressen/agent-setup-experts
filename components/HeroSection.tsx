@@ -49,9 +49,9 @@ export default function HeroSection() {
           transition={{ duration: 0.55, ease: 'easeOut' }}
           className='mb-6 mx-auto max-w-[780px] tracking-tight text-white'
         >
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Launch ASE Library</span>
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Agents for Your</span>
-          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Business.</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>Stop Wasting Time</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>On Work</span>
+          <span className='block text-5xl font-semibold leading-[1.05] text-white md:text-6xl'>AI Should Be Doing.</span>
         </motion.h1>
 
         <motion.p
