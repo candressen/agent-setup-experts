@@ -52,7 +52,7 @@ export default function ContactForm() {
             value={form.firstName}
             onChange={handleChange}
             className='w-full rounded-xl border border-white/10 bg-[#111] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#2563EB]/50 focus:ring-1 focus:ring-[#2563EB]/30'
-            placeholder='Christian'
+            placeholder='First name'
           />
         </div>
         <div>
@@ -63,7 +63,7 @@ export default function ContactForm() {
             value={form.lastName}
             onChange={handleChange}
             className='w-full rounded-xl border border-white/10 bg-[#111] px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-[#2563EB]/50 focus:ring-1 focus:ring-[#2563EB]/30'
-            placeholder='Andressen'
+            placeholder='Last name'
           />
         </div>
       </div>

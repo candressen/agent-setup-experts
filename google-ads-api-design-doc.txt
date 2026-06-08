@@ -1,0 +1,68 @@
+Agent Setup Experts — Google Ads API Tool Design Document
+
+Company: Agent Setup Experts
+Website: https://agentsetupexperts.com
+Contact: christian@agentsetupexperts.com
+Date: May 17, 2026
+
+1. TOOL OVERVIEW
+
+Agent Setup Experts uses the Google Ads API exclusively to manage its own advertising
+account programmatically. The tool is an internal automation system that creates, updates,
+and monitors Search campaigns for our own business — not a product offered to clients or
+the general public.
+
+2. PURPOSE AND USE CASE
+
+We use the Google Ads API to:
+- Create and manage Search campaigns targeting small business owners in Miami, Florida
+- Add and update keyword lists (exact and phrase match)
+- Create Responsive Search Ads for each campaign
+- Monitor campaign performance and adjust budgets
+- Track conversion actions (booked strategy calls via Calendly)
+
+3. TOOL ARCHITECTURE
+
+- Platform: Python script running on our internal server (Mac Mini, macOS)
+- Authentication: OAuth 2.0 with offline refresh token
+- API Version: Google Ads API v19
+- Access scope: Read/write access to our own Google Ads account only
+- No external users, no client accounts managed through this tool
+
+4. CAMPAIGN STRUCTURE
+
+Campaign 1: ASE | Law Firm | Miami
+- Type: Search
+- Budget: $10/day
+- Geo: Miami-Dade County (Presence only)
+- Keywords: Long-tail exact + phrase match targeting law firms seeking AI automation
+- Landing page: https://agentsetupexperts.com/miami-law-firm-ai
+
+Campaign 2: ASE | Med Spa | Miami
+- Type: Search
+- Budget: $6.50/day
+- Geo: Miami-Dade County (Presence only)
+- Keywords: Long-tail exact + phrase match targeting med spas seeking AI automation
+- Landing page: https://agentsetupexperts.com/miami-medspa-ai
+
+5. DATA FLOW
+
+User query triggers Google Ad
+→ Click lands on vertical-specific landing page
+→ User books free strategy call via Calendly
+→ Conversion tracked via Google Ads conversion action
+→ API reads conversion data to optimize bids and keywords
+
+6. ACCESS CONTROLS
+
+- API token stored securely in encrypted credentials file on internal server
+- Access limited to internal engineering team (1 person)
+- No third-party access, no client data processed through this tool
+- No reselling or white-labeling of API access
+
+7. COMPLIANCE
+
+- All campaigns comply with Google Ads advertising policies
+- No automated bidding manipulation or policy circumvention
+- API used solely for legitimate campaign management of our own account
+- Developer token associated with MCC account 399-536-8568
