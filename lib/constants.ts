@@ -43,10 +43,10 @@ export const PRICING_TIERS = [
   {
     id: 'starter',
     name: 'Starter Library',
-    price: '$2,000',
+    price: '$3,000',
     priceNote: 'setup price for 5 library agents',
-    monthlyPrice: '$217/mo',
-    monthlyNote: '$2,600 financed total, split across 12 months',
+    monthlyPrice: '$400/mo',
+    monthlyNote: '$400/month, cancel anytime',
     financedTotal: '$2,600',
     headline: 'Start with the core workflows that save time fastest',
     description:
@@ -64,16 +64,17 @@ export const PRICING_TIERS = [
   {
     id: 'growth',
     name: 'Growth Library',
-    price: '$3,000',
+    price: '$5,000',
     priceNote: 'setup price for 10 library agents',
-    monthlyPrice: '$325/mo',
-    monthlyNote: '$3,900 financed total, split across 12 months',
+    monthlyPrice: '$600/mo',
+    monthlyNote: '$600/month, cancel anytime',
     financedTotal: '$3,900',
     headline: 'Build a fuller operating system around your team',
     description:
       'Best for businesses ready to launch a broader library stack across lead handling, follow-up, support, reporting, and admin workflows.',
     includes: [
       '10 ASE library agents installed',
+      '1 fully custom-built agent flow',
       'Core stack launched fast, then expanded across sales, ops, and support',
       'Business tool integrations and approvals',
       'Launch guidance for your team',
@@ -85,16 +86,17 @@ export const PRICING_TIERS = [
   {
     id: 'custom',
     name: 'Custom Unlimited',
-    price: '$10,000',
+    price: '$14,000',
     priceNote: 'setup price for unlimited library + custom-built agents',
-    monthlyPrice: '$1,084/mo',
-    monthlyNote: '$13,000 financed total, split across 12 months',
+    monthlyPrice: '$1,500/mo',
+    monthlyNote: '$1,500/month, cancel anytime',
     financedTotal: '$13,000',
     headline: 'Unlimited library coverage plus custom agent builds',
     description:
       'Best for teams that want ASE to deploy the library broadly, add custom agents, and architect a more tailored AI operating layer.',
     includes: [
       'Unlimited ASE library agents installed',
+      '5 custom-built agent flows',
       'Phased rollout for broader library coverage plus custom workflows',
       'Advanced workflow design and systems integration',
       'Team training and rollout support',

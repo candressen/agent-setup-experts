@@ -6,12 +6,12 @@ const items = [
   {
     question: 'How do the library plans work?',
     answer:
-      'Starter includes 5 ASE library agents for a $2,000 setup. Growth includes 10 library agents for a $3,000 setup. Custom is $10,000 for unlimited library agents plus custom-built agents.',
+      'Starter includes 5 ASE library agents for a $3,000 setup. Growth includes 10 library agents for a $5,000 setup. Custom is $14,000 for unlimited library agents plus custom-built agents.',
   },
   {
     question: 'Can we pay monthly instead of all at once?',
     answer:
-      'Yes. We can present the setup on a 12-month financing view. Starter is $2,600 total financed, shown as about $217 per month. Growth is $3,900 total financed, about $325 per month. Custom is $13,000 total financed, about $1,084 per month.',
+      'Yes. Monthly retainer pricing is available. Starter is $400 per month, Growth is $600 per month, and Custom is $1,500 per month. Monthly retainer includes ongoing support, updates, and agent maintenance.',
   },
   {
     question: 'Is equipment included?',

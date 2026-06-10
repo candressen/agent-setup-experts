@@ -89,8 +89,7 @@ export default function PricingPage() {
             ))}
           </div>
           <p className="mt-6 text-sm leading-relaxed text-white/55">
-            Monthly pricing is based on adding a 30% surcharge to the setup total, then splitting it across
-            12 months.
+            Monthly retainer includes ongoing support, updates, and agent maintenance.
           </p>
         </div>
       </section>
