@@ -77,11 +77,7 @@ export default function ContactPage() {
           <div className="space-y-4">
             <div className="flex items-center gap-3 text-white/80">
               <span className="text-[#2563EB]">•</span>
-              <span>Phone: 704-490-9493</span>
-            </div>
-            <div className="flex items-center gap-3 text-white/80">
-              <span className="text-[#2563EB]">•</span>
-              <span>Email: agentsetupexperts@gmail.com</span>
+              <span>Email: hello@agentsetupexperts.com</span>
             </div>
             <div className="flex items-center gap-3 text-white/80">
               <span className="text-[#2563EB]">•</span>

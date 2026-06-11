@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Agent Setup Experts',
   tagline: 'Your First ASE Workflows, Live in 48 Hours.',
   url: 'https://agentsetupexperts.com',
-  email: 'agentsetupexperts@gmail.com',
+  email: 'hello@agentsetupexperts.com',
   phone: '704-490-9493',
   location: 'Miami, Florida',
   calendlyUrl: 'https://calendly.com/agentsetupexperts/30min?redirect_url=https://agentsetupexperts.com/thank-you',
