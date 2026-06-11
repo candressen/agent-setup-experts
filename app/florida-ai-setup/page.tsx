@@ -7,7 +7,7 @@ import { SITE } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'Florida AI Setup Service | AI Agents for Florida Businesses',
   description:
-    'Florida AI agent setup experts. Done-for-you AI automation for businesses across Florida. 48-hour deployment, starting at $2,000.',
+    'Florida AI agent setup experts. Done-for-you AI automation for businesses across Florida. 48-hour deployment, starting at $3,000.',
 }
 
 const serviceAreas = [

@@ -58,7 +58,7 @@ export default function SolutionSection() {
               <div className='mt-1 text-sm text-white/40'>From approved scope to first workflows live</div>
             </div>
             <div>
-              <div className='text-3xl font-bold text-white'>from $2,000</div>
+              <div className='text-3xl font-bold text-white'>from $3,000</div>
               <div className='mt-1 text-sm text-white/40'>5 library agents installed</div>
             </div>
           </div>
