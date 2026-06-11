@@ -24,9 +24,9 @@ export default function Nav() {
             <Image
               src='/logos/robot-icon.svg'
               alt=''
-              width={28}
-              height={28}
-              className='h-7 w-7 flex-shrink-0 brightness-0 invert'
+              width={56}
+              height={56}
+              className='h-14 w-14 flex-shrink-0 brightness-0 invert'
               priority
             />
             <span className='whitespace-nowrap text-base font-semibold tracking-tight text-white'>
@@ -38,14 +38,16 @@ export default function Nav() {
             <div className='relative group'>
               <Link
                 href={SERVICES_NAV.href}
-                className='flex items-center gap-1 whitespace-nowrap pb-2 text-sm text-white/70 transition hover:text-white'
+                className='flex items-center gap-1 whitespace-nowrap text-sm text-white/70 transition hover:text-white'
               >
                 {SERVICES_NAV.label}
                 <svg className='h-3 w-3 opacity-50' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                   <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
                 </svg>
               </Link>
-              <div className='absolute left-0 top-full z-50 hidden min-w-[160px] rounded-lg border border-white/10 bg-[#0f0f0f] py-1 shadow-xl group-hover:block'>
+              {/* Invisible bridge prevents gap from closing dropdown */}
+              <div className='absolute left-0 top-full h-2 w-full' />
+              <div className='absolute left-0 top-full mt-2 z-50 hidden min-w-[160px] rounded-lg border border-white/10 bg-[#0f0f0f] py-1 shadow-xl group-hover:block'>
                 {SERVICES_NAV.children.map((link) => (
                   <Link
                     key={link.label}
