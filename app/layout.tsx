@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import CookieConsent from "@/components/CookieConsent";
 import Footer from "@/components/Footer";
+import LeadMagnetPopup from "@/components/LeadMagnetPopup";
 import Nav from "@/components/Nav";
 import { COOKIE_CONSENT_KEY, type CookieConsentValue } from "@/lib/cookie-consent";
 import "./globals.css";
@@ -87,6 +88,7 @@ export default async function RootLayout({
         <Nav />
         <main className="pt-[var(--mobile-site-top-offset)] md:pt-20">{children}</main>
         <Footer />
+        <LeadMagnetPopup />
         <CookieConsent initialConsent={initialConsent} />
       </body>
     </html>
