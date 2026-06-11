@@ -35,20 +35,17 @@ export default function Nav() {
           </Link>
 
           <div className='hidden items-center gap-3 md:flex'>
-            <div className='group relative'>
-              <button className='flex items-center gap-1 whitespace-nowrap text-sm text-white/70 transition hover:text-white'>
+            <div className='relative group'>
+              <Link
+                href={SERVICES_NAV.href}
+                className='flex items-center gap-1 whitespace-nowrap pb-2 text-sm text-white/70 transition hover:text-white'
+              >
                 {SERVICES_NAV.label}
                 <svg className='h-3 w-3 opacity-50' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                   <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
                 </svg>
-              </button>
-              <div className='absolute left-0 top-full z-50 mt-1 hidden min-w-[160px] rounded-lg border border-white/10 bg-[#0f0f0f] py-1 shadow-xl group-hover:block'>
-                <Link
-                  href={SERVICES_NAV.href}
-                  className='block px-4 py-2 text-sm text-white/70 transition hover:bg-white/5 hover:text-white'
-                >
-                  All Services
-                </Link>
+              </Link>
+              <div className='absolute left-0 top-full z-50 hidden min-w-[160px] rounded-lg border border-white/10 bg-[#0f0f0f] py-1 shadow-xl group-hover:block'>
                 {SERVICES_NAV.children.map((link) => (
                   <Link
                     key={link.label}
