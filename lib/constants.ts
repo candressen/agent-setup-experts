@@ -18,13 +18,17 @@ export const COLORS = {
   textSecondary: 'rgba(255,255,255,0.60)',
 }
 
+export const SERVICES_NAV = {
+  label: 'Services',
+  href: '/services',
+  children: [{ label: 'Agent Library', href: '/library' }],
+} as const
+
 export const NAV_LINKS = [
-  { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Library', href: '/library' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
-]
+] as const
 
 export const LOGO_PATH = '/logos/logo-full.svg'
 

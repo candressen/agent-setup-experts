@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { NAV_LINKS, SITE } from '@/lib/constants'
+import { NAV_LINKS, SERVICES_NAV, SITE } from '@/lib/constants'
 import useObservedHeightCssVariable from '@/components/useObservedHeightCssVariable'
 
 export default function Nav() {
@@ -35,6 +35,32 @@ export default function Nav() {
           </Link>
 
           <div className='hidden items-center gap-3 md:flex'>
+            <div className='group relative'>
+              <button className='flex items-center gap-1 whitespace-nowrap text-sm text-white/70 transition hover:text-white'>
+                {SERVICES_NAV.label}
+                <svg className='h-3 w-3 opacity-50' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
+                </svg>
+              </button>
+              <div className='absolute left-0 top-full z-50 mt-1 hidden min-w-[160px] rounded-lg border border-white/10 bg-[#0f0f0f] py-1 shadow-xl group-hover:block'>
+                <Link
+                  href={SERVICES_NAV.href}
+                  className='block px-4 py-2 text-sm text-white/70 transition hover:bg-white/5 hover:text-white'
+                >
+                  All Services
+                </Link>
+                {SERVICES_NAV.children.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className='block px-4 py-2 text-sm text-white/70 transition hover:bg-white/5 hover:text-white'
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -57,6 +83,21 @@ export default function Nav() {
         </div>
 
         <div className='mt-3 flex gap-2 overflow-x-auto pb-1 md:hidden'>
+          <Link
+            href={SERVICES_NAV.href}
+            className='whitespace-nowrap rounded-full border border-[#2563EB]/30 bg-[#2563EB]/12 px-3 py-1.5 text-sm font-medium text-white transition hover:border-[#2563EB]/50 hover:bg-[#2563EB]/18'
+          >
+            {SERVICES_NAV.label}
+          </Link>
+          {SERVICES_NAV.children.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className='whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-white/70 transition hover:border-white/20 hover:text-white'
+            >
+              {link.label}
+            </Link>
+          ))}
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
