@@ -78,6 +78,12 @@ export default function Nav() {
             >
               Book a Call
             </Link>
+            <Link
+              href='/login'
+              className='ml-1 whitespace-nowrap rounded-lg bg-[#2563EB] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#1d4ed8]'
+            >
+              Login
+            </Link>
           </div>
         </div>
 
@@ -113,6 +119,12 @@ export default function Nav() {
             className='whitespace-nowrap rounded-full border border-[#2563EB]/30 bg-[#2563EB]/12 px-3 py-1.5 text-sm font-medium text-white'
           >
             Book a Call
+          </Link>
+          <Link
+            href='/login'
+            className='whitespace-nowrap rounded-full bg-[#2563EB] px-3 py-1.5 text-sm font-medium text-white transition hover:bg-[#1d4ed8]'
+          >
+            Login
           </Link>
         </div>
       </div>
