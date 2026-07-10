@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import { Geist, Geist_Mono } from 'next/font/google'
 import CookieConsent from "@/components/CookieConsent";
 import Footer from "@/components/Footer";
 import LeadMagnetPopup from "@/components/LeadMagnetPopup";
 import Nav from "@/components/Nav";
 import { COOKIE_CONSENT_KEY, type CookieConsentValue } from "@/lib/cookie-consent";
 import "./globals.css";
+
+const geistSans = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist-sans',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -84,12 +95,24 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#0a0a0a] text-white antialiased">
-        <Nav />
-        <main className="pt-[var(--mobile-site-top-offset)] md:pt-20">{children}</main>
-        <Footer />
-        <LeadMagnetPopup />
-        <CookieConsent initialConsent={initialConsent} />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-[#0a0a0a] text-white antialiased`}
+      >
+        <div data-site-chrome='marketing-nav'>
+          <Nav />
+        </div>
+        <main data-site-chrome='marketing-main' className="pt-[var(--mobile-site-top-offset)] md:pt-20">
+          {children}
+        </main>
+        <div data-site-chrome='marketing-footer'>
+          <Footer />
+        </div>
+        <div data-site-chrome='marketing-popup'>
+          <LeadMagnetPopup />
+        </div>
+        <div data-site-chrome='marketing-consent'>
+          <CookieConsent initialConsent={initialConsent} />
+        </div>
       </body>
     </html>
   );
