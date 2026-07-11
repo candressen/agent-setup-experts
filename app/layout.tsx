@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import LeadMagnetPopup from "@/components/LeadMagnetPopup";
 import Nav from "@/components/Nav";
 import { COOKIE_CONSENT_KEY, type CookieConsentValue } from "@/lib/cookie-consent";
+import PortalRouteDetector from "@/components/PortalRouteDetector"
 import "./globals.css";
 
 const geistSans = Geist({
@@ -98,21 +99,30 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-[#0a0a0a] text-white antialiased`}
       >
-        <div data-site-chrome='marketing-nav'>
-          <Nav />
-        </div>
-        <main data-site-chrome='marketing-main' className="pt-[var(--mobile-site-top-offset)] md:pt-20">
+        <PortalRouteDetector
+          marketingChrome={
+            <>
+              <div data-site-chrome='marketing-nav'>
+                <Nav />
+              </div>
+            </>
+          }
+          marketingFooter={
+            <>
+              <div data-site-chrome='marketing-footer'>
+                <Footer />
+              </div>
+              <div data-site-chrome='marketing-popup'>
+                <LeadMagnetPopup />
+              </div>
+              <div data-site-chrome='marketing-consent'>
+                <CookieConsent initialConsent={initialConsent} />
+              </div>
+            </>
+          }
+        >
           {children}
-        </main>
-        <div data-site-chrome='marketing-footer'>
-          <Footer />
-        </div>
-        <div data-site-chrome='marketing-popup'>
-          <LeadMagnetPopup />
-        </div>
-        <div data-site-chrome='marketing-consent'>
-          <CookieConsent initialConsent={initialConsent} />
-        </div>
+        </PortalRouteDetector>
       </body>
     </html>
   );
