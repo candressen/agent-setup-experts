@@ -79,7 +79,7 @@ export default function Nav() {
               Book a Call
             </Link>
             <Link
-              href='/login'
+              href='/dashboard'
               className='ml-1 whitespace-nowrap rounded-lg bg-[#2563EB] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#1d4ed8]'
             >
               Login
@@ -121,7 +121,7 @@ export default function Nav() {
             Book a Call
           </Link>
           <Link
-            href='/login'
+            href='/dashboard'
             className='whitespace-nowrap rounded-full bg-[#2563EB] px-3 py-1.5 text-sm font-medium text-white transition hover:bg-[#1d4ed8]'
           >
             Login

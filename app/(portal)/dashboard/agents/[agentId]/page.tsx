@@ -38,7 +38,13 @@ export default async function DashboardAgentDetailPage({
   const { agentId } = await params
   const { page: rawPage } = await searchParams
   const page = Math.max(1, Number.parseInt(rawPage ?? '1', 10) || 1)
-  const detail = await getAgentDetail(client.clientId, agentId, page)
+  let detail
+  try {
+    detail = await getAgentDetail(client.clientId, agentId, page)
+  } catch (err) {
+    console.error('Agent detail load error:', err)
+    detail = null
+  }
 
   if (!detail) {
     notFound()

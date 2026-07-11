@@ -156,7 +156,8 @@ export async function getAgentByIdForClient(clientId: string, agentId: string) {
     .maybeSingle()
 
   if (error) {
-    throw new Error(`Failed to load agent: ${error.message}`)
+    console.error('Failed to load agent:', error.message)
+    return null
   }
 
   return data as DashboardAgent | null
@@ -183,7 +184,8 @@ export async function getRoofingLeadPage(
   const { data, count, error } = await builder
 
   if (error) {
-    throw new Error(`Failed to load roofing leads: ${error.message}`)
+    console.error('Failed to load roofing leads:', error.message)
+    return { rows: [], totalCount: 0 }
   }
 
   return {
