@@ -16,7 +16,6 @@ export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
-  const [isUsername, setIsUsername] = useState(false)
   const [password, setPassword] = useState('')
   const [error, setError] = useState<LoginError>(null)
   const [submitting, setSubmitting] = useState(false)
@@ -40,7 +39,7 @@ export default function LoginPage() {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: isUsername ? `${email}@ase.local` : email, password }),
+        body: JSON.stringify({ email, password }),
       })
 
       if (response.ok) {
@@ -121,7 +120,7 @@ export default function LoginPage() {
                   onChange={(event) => {
                     const val = event.target.value
                     setEmail(val)
-                    setIsUsername(!val.includes('@'))
+                    
                   }}
                   className="h-12 w-full rounded-xl border border-slate-300 px-4 text-base text-slate-950 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15"
                   placeholder="Username or email"

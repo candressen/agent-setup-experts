@@ -1,18 +1,16 @@
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { AUTH_COOKIE_NAME } from '@/lib/auth'
+'use client'
 
-export default async function LogoutPage() {
-  const cookieStore = await cookies()
-  cookieStore.set({
-    name: AUTH_COOKIE_NAME,
-    value: '',
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
-    maxAge: 0,
-  })
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
-  redirect('/login')
+export default function LogoutPage() {
+  const router = useRouter()
+
+  useEffect(() => {
+    fetch('/api/auth/logout', { method: 'POST' }).finally(() => {
+      router.replace('/login')
+    })
+  }, [router])
+
+  return null
 }
