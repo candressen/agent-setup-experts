@@ -98,7 +98,13 @@ export default async function DashboardOverviewPage() {
 
   const overview = await getDashboardOverview(client.clientId)
   const activeAgentCount = overview.agents.filter((agent) => agent.status === 'active').length
-  const totalOutputRecords = overview.agents.reduce((sum, agent) => sum + agent.headlineCount, 0)
+  // Dedupe by output_table — take highest headlineCount per table to avoid double-counting
+  const tableMax: Record<string, number> = {}
+  for (const agent of overview.agents) {
+    const key = agent.output_table ?? `no-table-${agent.id}`
+    tableMax[key] = Math.max(tableMax[key] ?? 0, agent.headlineCount)
+  }
+  const totalOutputRecords = Object.values(tableMax).reduce((sum, n) => sum + n, 0)
   const latestRun = overview.agents
     .map((agent) => agent.last_run_at)
     .filter((value): value is string => Boolean(value))
