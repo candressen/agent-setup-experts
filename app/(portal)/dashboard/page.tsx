@@ -180,9 +180,12 @@ export default async function DashboardOverviewPage() {
                         </span>
                         <div>
                           <h3 className='text-xl font-semibold text-gray-900'>{agent.agent_name}</h3>
-                          <p className='text-sm capitalize text-gray-500'>
+                          <p className='text-sm capitalize text-gray-400'>
                             {agent.agent_type.replace(/_/g, ' ')}
                           </p>
+                          {typeof agent.metadata?.description === 'string' && agent.metadata.description ? (
+                            <p className='mt-1 text-sm text-gray-500 max-w-xs'>{agent.metadata.description as string}</p>
+                          ) : null}
                         </div>
                       </div>
 

@@ -77,6 +77,9 @@ export default async function DashboardAgentDetailPage({
                 <p className='mt-2 text-base capitalize text-gray-600'>
                   {agent.agent_type.replace(/_/g, ' ')}
                 </p>
+                {typeof agent.metadata?.description === 'string' && agent.metadata.description ? (
+                  <p className='mt-2 text-sm text-gray-500'>{agent.metadata.description as string}</p>
+                ) : null}
               </div>
               <div className='grid gap-4 sm:grid-cols-3'>
                 <div>
