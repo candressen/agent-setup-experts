@@ -44,7 +44,7 @@ export type RoofingLeadRow = {
   city: string | null
   state: string | null
   google_rating: number | string | null
-  status: string | null
+  sent_at: string | null
 }
 
 export type AgentDetailResult = {
@@ -135,7 +135,9 @@ export async function getDashboardOverview(clientId: string): Promise<DashboardO
   const agentsWithCounts = await Promise.all(
     agents.map(async (agent) => ({
       ...agent,
-      headlineCount: await getOutputCount(agent.output_table, agent.output_filter),
+      headlineCount: typeof agent.metadata?.total_leads === 'number'
+        ? (agent.metadata.total_leads as number)
+        : await getOutputCount(agent.output_table, agent.output_filter),
     }))
   )
 
@@ -173,7 +175,7 @@ export async function getRoofingLeadPage(
   const to = from + pageSize - 1
   let builder = supabase
     .from(outputTable)
-    .select('company, owner_name, phone, email, city, state, google_rating, status', {
+    .select('company, owner_name, phone, email, city, state, google_rating, sent_at', {
       count: 'exact',
     })
     .range(from, to)

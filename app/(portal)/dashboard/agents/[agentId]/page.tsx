@@ -150,7 +150,7 @@ export default async function DashboardAgentDetailPage({
                       'City',
                       'State',
                       'Google Rating',
-                      'Status',
+                      'Email Sent',
                     ].map((column) => (
                       <th
                         key={column}
@@ -194,7 +194,7 @@ export default async function DashboardAgentDetailPage({
                           {row.google_rating ?? '—'}
                         </td>
                         <td className='border-b border-gray-100 px-4 py-3 text-sm text-gray-700'>
-                          {row.status ?? '—'}
+                          {row.sent_at ? new Date(row.sent_at).toLocaleDateString() : '—'}
                         </td>
                       </tr>
                     ))
