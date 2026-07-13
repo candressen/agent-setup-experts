@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 import ActivityFeed from '@/components/portal/ActivityFeed'
+import RecommendationFeed from '@/components/portal/RecommendationFeed'
 import StatusPill from '@/components/portal/StatusPill'
 import { getDashboardOverview, type DashboardOverviewAgent } from '@/lib/dashboard'
 import {
@@ -235,6 +236,16 @@ export default async function DashboardOverviewPage() {
             tone: getActivityTone(item.event),
           }))}
           className='border border-gray-200 bg-white shadow-sm'
+        />
+
+        <RecommendationFeed
+          items={overview.recommendations.map((rec) => ({
+            id: rec.id,
+            text: rec.text,
+            timestamp: formatRelativeTime(rec.created_at),
+            priority: rec.priority,
+          }))}
+          className='border border-indigo-100 bg-white shadow-sm'
         />
       </div>
     </div>

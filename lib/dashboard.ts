@@ -27,6 +27,13 @@ export type DashboardActivity = {
   created_at: string
 }
 
+export type DashboardRecommendation = {
+  id: string
+  text: string
+  priority: 'high' | 'medium' | 'low'
+  created_at: string
+}
+
 export type DashboardOverviewAgent = DashboardAgent & {
   headlineCount: number
 }
@@ -34,6 +41,7 @@ export type DashboardOverviewAgent = DashboardAgent & {
 export type DashboardOverview = {
   agents: DashboardOverviewAgent[]
   recentActivity: DashboardActivity[]
+  recommendations: DashboardRecommendation[]
 }
 
 export type RoofingLeadRow = {
@@ -141,9 +149,22 @@ export async function getDashboardOverview(clientId: string): Promise<DashboardO
     }))
   )
 
+  const activityOnly = recentActivity.filter(
+    (item) => item.metadata?.type !== 'recommendation'
+  )
+  const recommendations: DashboardRecommendation[] = recentActivity
+    .filter((item) => item.metadata?.type === 'recommendation')
+    .map((item) => ({
+      id: item.id,
+      text: item.event,
+      priority: (item.metadata?.priority as 'high' | 'medium' | 'low') ?? 'medium',
+      created_at: item.created_at,
+    }))
+
   return {
     agents: agentsWithCounts,
-    recentActivity,
+    recentActivity: activityOnly,
+    recommendations,
   }
 }
 
