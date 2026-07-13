@@ -107,17 +107,19 @@ export default async function DashboardAgentDetailPage({
               </div>
             </div>
 
-            <div className='rounded-2xl border border-gray-200 bg-gray-50 px-6 py-5 lg:min-w-72'>
-              <p className='text-xs font-semibold uppercase tracking-[0.16em] text-gray-500'>
-                Headline metric
-              </p>
-              <p className='mt-3 text-4xl font-bold tabular-nums text-gray-900'>
-                {formatNumber(detail.totalCount)}
-              </p>
-              <p className='mt-2 text-sm text-gray-600'>
-                {isRoofingLeadAgent ? 'Total roofing leads available' : 'Output data'}
-              </p>
-            </div>
+            {isRoofingLeadAgent ? (
+              <div className='rounded-2xl border border-gray-200 bg-gray-50 px-6 py-5 lg:min-w-72'>
+                <p className='text-xs font-semibold uppercase tracking-[0.16em] text-gray-500'>
+                  Headline metric
+                </p>
+                <p className='mt-3 text-4xl font-bold tabular-nums text-gray-900'>
+                  {formatNumber(detail.totalCount)}
+                </p>
+                <p className='mt-2 text-sm text-gray-600'>
+                  Total roofing leads available
+                </p>
+              </div>
+            ) : null}
           </div>
         </section>
 

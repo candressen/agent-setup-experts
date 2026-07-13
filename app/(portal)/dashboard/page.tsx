@@ -198,17 +198,19 @@ export default async function DashboardOverviewPage() {
                       </div>
                     </div>
 
-                    <div className='rounded-2xl bg-gray-50 px-5 py-4 sm:min-w-48'>
-                      <p className='text-xs font-semibold uppercase tracking-[0.16em] text-gray-500'>
-                        Headline metric
-                      </p>
-                      <p className='mt-3 text-3xl font-bold tabular-nums text-gray-900'>
-                        {formatNumber(agent.headlineCount)}
-                      </p>
-                      <p className='mt-1 text-sm text-gray-600'>
-                        {getAgentMetricLabel(agent)}
-                      </p>
-                    </div>
+                    {agent.agent_type === 'lead_scraper' ? (
+                      <div className='rounded-2xl bg-gray-50 px-5 py-4 sm:min-w-48'>
+                        <p className='text-xs font-semibold uppercase tracking-[0.16em] text-gray-500'>
+                          Headline metric
+                        </p>
+                        <p className='mt-3 text-3xl font-bold tabular-nums text-gray-900'>
+                          {formatNumber(agent.headlineCount)}
+                        </p>
+                        <p className='mt-1 text-sm text-gray-600'>
+                          {getAgentMetricLabel(agent)}
+                        </p>
+                      </div>
+                    ) : null}
                   </div>
 
                   <div className='mt-6 flex items-center justify-between border-t border-gray-100 pt-5'>
