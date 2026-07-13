@@ -131,9 +131,9 @@ export default async function DashboardOverviewPage() {
             detail={`${formatNumber(overview.agents.length)} total configured`}
           />
           <MetricCard
-            label='Output records'
+            label='Total leads enriched'
             value={formatNumber(totalOutputRecords)}
-            detail='Combined records across connected agent outputs'
+            detail='Leads scraped and enriched across all active agents'
           />
           <MetricCard
             label='Last agent run'
