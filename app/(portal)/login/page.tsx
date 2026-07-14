@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useEffect, useMemo, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 
 type LoginError = 'invalid' | 'rate_limit' | 'expired' | 'generic' | null
 
@@ -13,7 +13,6 @@ const errorMessages: Record<Exclude<LoginError, null>, string> = {
 }
 
 export default function LoginPage() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -43,7 +42,7 @@ export default function LoginPage() {
       })
 
       if (response.ok) {
-        router.replace('/dashboard')
+        window.location.href = "/dashboard"
         return
       }
 
